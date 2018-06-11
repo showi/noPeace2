@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://lib/Engine.gd" type="Script" id=1]
+
+[node name="Engine" type="Node"]
+
+script = ExtResource( 1 )
+speed = Vector2( 5, 8 )
+minVelocity = Vector2( 0, 0 )
+maxVelocity = Vector2( 400, 600 )
+
+

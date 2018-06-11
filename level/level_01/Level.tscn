@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://level/level_01/Level.gd" type="Script" id=1]
+[ext_resource path="res://asset/background/bgscroll-blacksky-01.png" type="Texture" id=2]
+[ext_resource path="res://lib/SpawnPoint.tscn" type="PackedScene" id=3]
+
+[node name="Level" type="Node2D"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "GUI", "Render Target", "Rendering", "Shadow Atlas" ]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." index="0"]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+scroll_offset = Vector2( 0, 0 )
+scroll_base_offset = Vector2( 0, 0 )
+scroll_base_scale = Vector2( 1, 1 )
+scroll_limit_begin = Vector2( 0, 0 )
+scroll_limit_end = Vector2( 0, 0 )
+scroll_ignore_camera_zoom = false
+_sections_unfolded = [ "Scroll" ]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" index="0"]
+
+z_index = -1
+z_as_relative = false
+motion_scale = Vector2( 1, 1 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 800, 4000 )
+_sections_unfolded = [ "Material", "Motion", "Pause", "Transform", "Visibility", "Z Index" ]
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer" index="0"]
+
+texture = ExtResource( 2 )
+centered = false
+offset = Vector2( 0, -3000 )
+_sections_unfolded = [ "Offset" ]
+
+[node name="SpawnPoint" parent="." index="1" instance=ExtResource( 3 )]
+
+position = Vector2( 100, -200 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="SpawnPoint2" parent="." index="2" instance=ExtResource( 3 )]
+
+position = Vector2( 700, 1300 )
+rotation = 3.14159
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="SpawnPoint4" parent="." index="3" instance=ExtResource( 3 )]
+
+position = Vector2( 1000, 800 )
+rotation = -2.35619
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="SpawnPoint3" parent="." index="4" instance=ExtResource( 3 )]
+
+position = Vector2( -200, 200 )
+rotation = -0.785398
+_sections_unfolded = [ "Collision", "Transform" ]
+
+

@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://enemy/spaceship01/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://asset/Example_ships/5B.png" type="Texture" id=2]
+[ext_resource path="res://lib/Engine.tscn" type="PackedScene" id=3]
+[ext_resource path="res://lib/WeaponSystem.tscn" type="PackedScene" id=4]
+[ext_resource path="res://lib/Sensor.tscn" type="PackedScene" id=5]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 30.0
+height = 100.0
+
+[node name="Enemy" type="Area2D" index="0"]
+
+z_index = 1
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 2
+collision_mask = 21
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Transform", "Z Index" ]
+speed = 300.0
+life = 10
+lifeTime = 10.0
+
+[node name="Sprite" type="Sprite" parent="." index="0"]
+
+rotation = 3.14159
+z_index = 1
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Region", "Transform", "Z Index" ]
+
+[node name="Engine" parent="." index="1" instance=ExtResource( 3 )]
+
+[node name="WeaponSystem" parent="." index="2" instance=ExtResource( 4 )]
+
+cooldown = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
+
+modulate = Color( 0.941406, 0.354332, 0.197392, 1 )
+z_index = 1
+shape = SubResource( 1 )
+_sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
+
+[node name="Sensor" parent="." index="4" instance=ExtResource( 5 )]
+
+position = Vector2( 0, 0.5 )
+entityKindToDetect = "Player"
+detectionLength = 800.0
+detectionWidth = 600.0
+
+

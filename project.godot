@@ -1,0 +1,53 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=3
+
+[application]
+
+config/name="noPeace"
+run/main_scene="res://Game.tscn"
+config/icon="res://asset/icon.png"
+
+[autoload]
+
+libCommon="*res://lib/libCommon.tscn"
+
+[display]
+
+window/size/width=800
+window/size/height=1000
+window/handheld/orientation="portrait"
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
+window/stretch/shrink="1"
+
+[layer_names]
+
+2d_render/layer_1="ground"
+2d_physics/layer_1="ground"
+2d_render/layer_2="enemy"
+2d_physics/layer_2="enemy"
+2d_render/layer_3="player"
+2d_physics/layer_3="player"
+2d_render/layer_4="detection"
+2d_physics/layer_4="detection"
+2d_render/layer_5="bullets"
+2d_physics/layer_5="bullets"
+2d_render/size/width=800
+
+[physics]
+
+2d/default_gravity=0
+common/enable_object_picking=false
+
+[rendering]
+
+quality/filters/use_nearest_mipmap_filter=true
+quality/subsurface_scattering/scale=0
+quality/filters/msaa=2

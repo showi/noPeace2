@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://lib/WeaponSystem.gd" type="Script" id=1]
+
+[node name="WeaponSystem" type="Node"]
+
+script = ExtResource( 1 )
+_sections_unfolded = [ "Pause" ]
+ammoPath = "res://ammo/energy_ball/Ammo.tscn"
+cooldown = 0.33
+autoFire = false
+
+
