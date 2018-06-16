@@ -1,29 +1,51 @@
-extends Area2D
+extends RigidBody2D
 
-export (Vector2) var SPEED
+signal lifeSignal(value)
+signal pressFire()
+signal releaseFire()
+
+export (float) var life = 100.0
+export (float) var damage = 10.0
 
 onready var common = get_node('/root/libCommon')
 
 var screensize
 var engine = null
-var weaponSystem = null
 var world = null
+var killAnimation = null
 
 func _init():
-    pass
+    set_meta('entityKind', 'Player')
 
 func _ready():
-    set_meta('entityKind', 'Player')
+    killAnimation = common.getResource('explosion', 'explosion_02')    
+    connect('body_entered', self, 'hit')
+    connect('pressFire', $WeaponSystem, 'pressFire')
+    connect('releaseFire', $WeaponSystem, 'releaseFire')
+    $WeaponSystem.connect("pctChargingSignal", $Hud/Power, 'setValue')
+    connect('lifeSignal', $Hud/Life, 'setValue')
     screensize = common.getScreenSize()
     world = common.getLevelEntity('LevelDefault/bullets')
+    if not world:
+        world = get_parent()
     engine = get_node('Engine')
-    weaponSystem = get_node("WeaponSystem")
-    connect('area_entered', self, 'hit')
 
 func hit(entity):
-    var kind = common.getEntityKind(entity)
+    print('player')
+    common.hit(self, entity)
+
+func setLife(value):
+    life = value
+    emit_signal('lifeSignal', value)
+    if life <= 0:
+        kill()
+
+func kill():
+    common.kill(self, killAnimation)
+    call_deferred('_remove')
 
 func _process(delta):
+    var rspeed = 0.66
     if Input.is_action_pressed("ui_right"):
         self.engine.right()
     if Input.is_action_pressed("ui_left"):
@@ -33,24 +55,28 @@ func _process(delta):
     if Input.is_action_pressed("ui_up"):
         self.engine.up()
 
-    if self.engine.velocity:
+    if self.linear_velocity.length():
         $AnimatedSprite.play()
     else:
         $AnimatedSprite.stop()
 
-    position += self.engine.velocity * delta
-    position.x = clamp(position.x, 0, screensize.x)
-    position.y = clamp(position.y, - screensize.y * 25, screensize.y)
     if Input.is_action_just_released('ui_accept'):
-        weaponSystem.releaseFire()
+        emit_signal('releaseFire')
+        pass
     elif Input.is_action_just_pressed('ui_accept'):
-        weaponSystem.pressFire()
+        emit_signal('pressFire')
 
-    if self.engine.velocity.x < 0:
+    if engine.direction == engine.Direction.LEFT:
         $AnimatedSprite.animation = "left"
         $AnimatedSprite.flip_v = false
-    elif self.engine.velocity.x > 0:
+    elif engine.direction == engine.Direction.RIGHT:
         $AnimatedSprite.animation = "right"
         $AnimatedSprite.flip_v = false
-    elif self.engine.velocity.x == 0:
+    elif engine.direction == engine.Direction.UP:
         $AnimatedSprite.animation = "up"
+    elif engine.direction == engine.Direction.RIGHT:
+        $AnimatedSprite.animation = "up"
+
+func _remove():
+    get_parent().remove_child(self)
+    queue_free()

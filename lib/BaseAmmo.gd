@@ -5,49 +5,65 @@ export (float) var fullPowerTime = 1.0
 export (int) var speed = 400
 export (float) var powerFactorDefault = 1.0
 export (int) var timeout = 5
+export (bool) var oneWayCollsion = true
 
-var shooter = null
-var powerFactor = powerFactorDefault
+onready var common = get_node('/root/libCommon')
+
 var timer = null
-var velocity = null
-var world = null
-var hitDamage = null
+var velocity = Vector2(0, 0)
+var hitDamage = 0
+var initialVelocity = 0
+var weaponSystemRef = null
+var engine = null
+
 
 func _init():
-    hide()
     set_meta('entityKind', 'Ammo')
-    velocity = null
-    initTimer()    
 
 func _ready():
-    set_global_position(shooter.get_global_position())
-    var totalSpeed = clamp(abs(shooter.engine.velocity.y), 0, 1000) + speed
-    velocity = Vector2(0, 1).rotated(get_rotation()) * totalSpeed
-    show()
+    hide()
+    initTimer()    
 
 func _process(delta):
     if velocity:
         position += velocity * delta
+    
+func setWeaponSystem(obj):
+    weaponSystemRef = weakref(obj)
+    set_collision_layer_bit(obj.ammoCollisionLayer, true)
 
-func fire(_world, _shooter, pctCharging):
-    world = _world
-    shooter = _shooter
-    powerFactor = 1 + (pctCharging / 100) * 2.0
-    hitDamage = damage * powerFactor
-    apply_scale(Vector2(powerFactor, powerFactor))
+func getWorld():
+    return get_node('/root/Game/LevelManager/Level')
+
+func getShooter():
+    var ref = weaponSystemRef.get_ref()
+    if not ref:
+        return null
+    return ref.get_parent()
+
+func fire(powerFactor=powerFactorDefault):
+    var shooter = getShooter()
+    if shooter.has_node('Engine'):
+        initialVelocity = clamp(abs(shooter.linear_velocity.y), 1, 1000)
+    var totalSpeed =  initialVelocity + speed
+    hitDamage = damage + damage * powerFactor
+    set_global_position(shooter.get_global_position())
     set_global_rotation(shooter.get_global_rotation())
-    set_global_position(shooter.get_position())
+    velocity = Vector2(0, -1).rotated(shooter.rotation) * totalSpeed
+    apply_scale(Vector2(1 + powerFactor, 1 + powerFactor))
     timer.start()
-    world.add_child(self)
+    show()
 
 func kill():
     $CollisionShape2D.disabled = true
     hide()
-    velocity = null
+#    velocity = Vector2(0, 0)
     call_deferred('_remove')
 
 func _remove():
-    world.remove_child(self)
+    var world = getWorld()
+    # get_parent().remove_child(self)
+    queue_free()
 
 func initTimer():
     timer = Timer.new()

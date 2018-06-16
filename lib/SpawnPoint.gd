@@ -26,17 +26,17 @@ func _init():
 func _ready():
     level = common.getLevelManager()
     apply_scale(Vector2(detectionRadius, detectionRadius))
-    connect('area_entered', self, 'on_area_entered', [], CONNECT_FLAGS)
-    connect('area_exited', self, 'on_area_exited', [], CONNECT_FLAGS)    
+    connect('body_entered', self, 'on_detected', [], CONNECT_FLAGS)
+    connect('body_exited', self, 'on_loose', [], CONNECT_FLAGS)    
     add_child(entitySpawner)
     entityClass = common.getResource(entityKind, entityName)
 
-func on_area_entered(area):
+func on_detected(area):
     entitySpawner.start()
     spawn()
 
-func on_area_exited(area):
-    pass
+func on_loose(area):
+    entitySpawner.stop()
 
 func _remove():
     get_parent().remove_child(self)
@@ -49,5 +49,5 @@ func spawn():
     var entity = entityClass.instance()
     var pos = get_global_position()
     entity.set_global_position(get_position())
-    entity.set_global_rotation(get_rotation())
+    entity.set_global_rotation(get_global_rotation())
     level.add_child(entity)

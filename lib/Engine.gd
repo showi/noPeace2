@@ -1,53 +1,58 @@
 extends Node
 
-export (int) var speed = Vector2(5, 8)
-export (Vector2) var minVelocity = Vector2(0, 0)
-export (Vector2) var maxVelocity = Vector2(400, 600)
+export (float) var speed = 10
+export (float) var minVelocity = 0
+export (float) var maxVelocity = 400
 
-var velocity = null
+enum Direction {
+    UP,
+    RIGHT,
+    DOWN,
+    LEFT
+}
+
+const VECTOR_UP = Vector2(0, -1)
+const VECTOR_DOWN = Vector2(0, 1)
+const VECTOR_RIGHT = Vector2(1, 0)
+const VECTOR_LEFT = Vector2(-1, 0)
+
+onready var parent = get_parent()
+
 var disabled = false
 var timer = null
+var lastTimePress = null
+var direction = null
+var currentSpeed
+var isNewDirection = true
 
-func _init():
-    velocity = minVelocity
-    timer = Timer.new()
-    timer.set_wait_time(0.100)
-    timer.one_shot = true
-    timer.connect('timeout', self, 'enable')
-    add_child(timer)
+func _ready():
+    currentSpeed = 0.1 * speed
+
+func _pressDirection(_direction):
+    if _direction != direction:
+        isNewDirection = true
+    else:
+        isNewDirection = false
+    direction = _direction
+    lastTimePress = OS.get_ticks_msec()
+
+func get_impulse(vector):
+    return vector.rotated(parent.get_global_rotation()).normalized() * currentSpeed
 
 func up():
-    velocity.y -= speed.y
-    velocity.y = - clamp(- velocity.y, minVelocity.y, maxVelocity.y)
+    parent.apply_impulse(parent.position, get_impulse(VECTOR_UP))
+    _pressDirection(Direction.UP)
 
 func down():
-    velocity.y += speed.y
-    velocity.y = clamp(velocity.y, minVelocity.y, maxVelocity.y)
+    parent.apply_impulse(parent.position, get_impulse(VECTOR_DOWN))
+    _pressDirection(Direction.DOWN)
 
 func right():
-    if velocity.x < -1:
-        velocity.x = 0
-        disable()
-    if disabled:
-        return
-    else:
-        velocity.x += speed.x
-        velocity.x = clamp(velocity.x, minVelocity.x, maxVelocity.x)
+    parent.apply_impulse(parent.position, get_impulse(VECTOR_RIGHT))
+    _pressDirection(Direction.RIGHT)
 
 func left():
-    if velocity.x > 0:
-        velocity.x = 0
-        disable()
-    if disabled:
-        return
-    else:
-        velocity.x -= speed.x
-        velocity.x = - clamp(-velocity.x, minVelocity.x, maxVelocity.x)
+    parent.apply_impulse(parent.position, get_impulse(VECTOR_LEFT))
+    _pressDirection(Direction.LEFT)
 
-func enable():
-    disabled = false
 
-func disable(time=0.1):
-    disabled = true
-    timer.set_wait_time(time)
-    timer.start()

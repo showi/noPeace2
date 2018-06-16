@@ -1,4 +1,4 @@
-extends Area2D
+extends RigidBody2D
 
 export (float) var speed = 200
 export (float) var life = 10
@@ -26,14 +26,17 @@ func _ready():
     weaponSystem = $WeaponSystem
     engine = $Engine
     world = common.getLevelEntity('LevelDefault/bullets')
+    connect('body_entered', self, 'hit')
     killTimer.start()
-    engine.up()
-    connect('area_entered', self, 'hit')
+
 
 func hit(entity):
     var kind = common.getEntityKind(entity)
     if kind == 'Ammo':
-        var shooterKind = common.getEntityKind(entity.shooter)
+        var shooter = entity.getShooter()
+        if not shooter:
+            return
+        var shooterKind = common.getEntityKind(shooter)
         if shooterKind == 'Player':
             entity.kill()
             life -= entity.hitDamage
@@ -41,18 +44,12 @@ func hit(entity):
 func _process(delta):
     if life <= 0:
         return kill()
-    var velocity = Vector2(0, 1).rotated(get_rotation())  * speed * delta
-    position += velocity
-    position += engine.velocity * delta
+    engine.up()
 
 func kill():
-    hide()
-    killTimer.stop()
-    var animation = killAnimation.instance()
-    animation.set_scale(Vector2(4, 4))
-    animation.set_position(get_global_position())
-    common.getLevelEntity('LevelDefault/explosions').add_child(animation)
+    common.kill(self, killAnimation)
     call_deferred('_remove')
-
+    
 func _remove():
     get_parent().remove_child(self)
+    queue_free()

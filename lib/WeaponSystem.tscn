@@ -7,7 +7,8 @@
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause" ]
 ammoPath = "res://ammo/energy_ball/Ammo.tscn"
-cooldown = 0.33
+cooldown = 0.5
 autoFire = false
+ammoCollisionLayer = 5
 
 

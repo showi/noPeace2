@@ -2,7 +2,7 @@
 
 [ext_resource path="res://lib/Sensor.gd" type="Script" id=1]
 
-[sub_resource type="ConvexPolygonShape2D" id=2]
+[sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
 points = PoolVector2Array( 0, -0.5, 0.5, 0.5, -0.5, 0.5 )
@@ -10,6 +10,7 @@ points = PoolVector2Array( 0, -0.5, 0.5, 0.5, -0.5, 0.5 )
 [node name="Sensor" type="Area2D"]
 
 modulate = Color( 0.554688, 0.211736, 0.211736, 1 )
+rotation = 3.14159
 input_pickable = true
 gravity_vec = Vector2( 0, 0 )
 gravity = 0.0
@@ -29,7 +30,7 @@ detectionWidth = 20.0
 [node name="detection" type="CollisionShape2D" parent="." index="0"]
 
 modulate = Color( 0.584835, 0.925781, 0.243889, 1 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 _sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
 

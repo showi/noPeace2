@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://lib/Shield.gd" type="Script" id=1]
+[ext_resource path="res://lib/Gauge.tscn" type="PackedScene" id=2]
+[ext_resource path="res://asset/shield/shield.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 10.0
+
+[node name="Shield" type="Area2D"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 0 )
+gravity = 0.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 18440
+collision_mask = 34
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
+color = Color( 0.0666667, 1, 0.0666667, 1 )
+life = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+
+shape = SubResource( 1 )
+
+[node name="Life" parent="." index="1" instance=ExtResource( 2 )]
+
+visible = false
+margin_left = -50.0
+margin_right = 50.0
+_sections_unfolded = [ "Material", "Rect", "Visibility" ]
+gaugeName = "Life"
+value = 10.0
+
+[node name="Sprite" type="Sprite" parent="." index="2"]
+
+modulate = Color( 0.0510753, 0.288306, 1, 1 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Material", "Visibility" ]
+
+

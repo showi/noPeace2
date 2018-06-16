@@ -20,34 +20,54 @@ libCommon="*res://lib/libCommon.tscn"
 
 [display]
 
-window/size/width=800
-window/size/height=1000
+window/size/height=768
+window/size/resizable=false
+window/size/test_width=640
+window/size/test_height=480
 window/handheld/orientation="portrait"
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 window/stretch/shrink="1"
 
+[input]
+
+ui_left=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":-1.0,"script":null)
+ ]
+ui_right=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":1.0,"script":null)
+ ]
+ui_up=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":-1.0,"script":null)
+ ]
+ui_down=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":1.0,"script":null)
+ ]
+
 [layer_names]
 
-2d_render/layer_1="ground"
-2d_physics/layer_1="ground"
-2d_render/layer_2="enemy"
-2d_physics/layer_2="enemy"
-2d_render/layer_3="player"
-2d_physics/layer_3="player"
-2d_render/layer_4="detection"
-2d_physics/layer_4="detection"
-2d_render/layer_5="bullets"
-2d_physics/layer_5="bullets"
+2d_render/layer_1="Ground"
+2d_physics/layer_1="Ground"
+2d_render/layer_2="Enemy"
+2d_physics/layer_2="Enemy"
+2d_render/layer_3="Detection"
+2d_physics/layer_3="Detection"
+2d_render/layer_4="Player"
+2d_physics/layer_4="Player"
+2d_render/layer_5="BulletPlayer"
+2d_physics/layer_5="BulletPlayer"
+2d_render/layer_6="BulletEnemy"
+2d_physics/layer_6="BulletEnemy"
 2d_render/size/width=800
 
 [physics]
 
+common/physics_fps=30
 2d/default_gravity=0
+3d/default_gravity=0.0
+3d/default_gravity_vector=Vector3( 0, 0, 0 )
 common/enable_object_picking=false
 
 [rendering]
 
-quality/filters/use_nearest_mipmap_filter=true
-quality/subsurface_scattering/scale=0
-quality/filters/msaa=2
+quality/intended_usage/framebuffer_allocation=0

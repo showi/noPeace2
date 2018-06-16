@@ -24,6 +24,9 @@ func start():
 func _remove():
     get_parent().remove_child(self)
 
+func kill():
+    call_deferred('_remove')
+
 func _process(delta):
     if stopped:
         return
@@ -35,6 +38,6 @@ func _process(delta):
             if not loop:
                 stop()
                 if autoRemove:
-                    call_deferred('_remove')
+                    kill()
             currentIndex = 0
         sprite.set_frame(currentIndex)

@@ -1,0 +1,18 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/DeathFlash.ogg-95d17c80aede4c842aa931a8853a54e0.oggstr"
+
+[deps]
+
+source_file="res://sfx/explosion/DeathFlash.ogg"
+source_md5="0c776f85f325dffe90e866b2ba3d6632"
+
+dest_files=[ "res://.import/DeathFlash.ogg-95d17c80aede4c842aa931a8853a54e0.oggstr" ]
+dest_md5="2444efe7dd14fe8a2c38b4459022c219"
+
+[params]
+
+loop=true
+loop_offset=0

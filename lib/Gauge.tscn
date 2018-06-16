@@ -11,17 +11,18 @@ anchor_bottom = 0.0
 margin_right = 100.0
 margin_bottom = 10.0
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
+rect_clip_content = true
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 1 )
-_sections_unfolded = [ "Visibility" ]
+_sections_unfolded = [ "Rect", "Visibility" ]
 gaugeName = "One Gauge"
 minimum = 0.0
 maximum = 100.0
 value = 33.0
+color = Color( 0, 1, 0, 1 )
 
 [node name="Background" type="ColorRect" parent="." index="0"]
 
@@ -57,6 +58,34 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 color = Color( 0.135144, 0.402897, 0.914062, 1 )
-_sections_unfolded = [ "Grow Direction", "Hint", "Margin", "Rect" ]
+_sections_unfolded = [ "Grow Direction", "Hint", "Margin", "Material", "Rect", "Visibility" ]
+
+[node name="Label" type="RichTextLabel" parent="." index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 100.0
+margin_bottom = 10.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = false
+bbcode_text = ""
+visible_characters = -1
+percent_visible = 1.0
+meta_underlined = true
+tab_size = 4
+text = "label"
+scroll_active = false
+scroll_following = false
+selection_enabled = false
+override_selected_font_color = false
+_sections_unfolded = [ "Anchor", "BBCode", "Focus", "Grow Direction", "Hint", "Margin", "Mouse", "Rect", "Size Flags", "custom_colors", "custom_constants", "custom_fonts", "custom_styles" ]
 
 

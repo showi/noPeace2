@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://asset/terrain/conifer_forest/conifer_forest_inner.png" type="Texture" id=1]
+[ext_resource path="res://asset/terrain/ocean_west_2.png" type="Texture" id=2]
+[ext_resource path="res://asset/terrain/ocean_east_2.png" type="Texture" id=3]
+[ext_resource path="res://asset/terrain/plains.png" type="Texture" id=4]
+[ext_resource path="res://asset/terrain/mountains_inner.png" type="Texture" id=5]
+
+[node name="TileSet" type="Node"]
+
+[node name="conifer_forest_inner" type="Sprite" parent="." index="0"]
+
+visible = false
+texture = ExtResource( 1 )
+
+[node name="ocean_west_2" type="Sprite" parent="." index="1"]
+
+visible = false
+texture = ExtResource( 2 )
+
+[node name="ocean_east_2" type="Sprite" parent="." index="2"]
+
+visible = false
+texture = ExtResource( 3 )
+
+[node name="plains" type="Sprite" parent="." index="3"]
+
+texture = ExtResource( 4 )
+
+[node name="mountains_inner" type="Sprite" parent="." index="4"]
+
+texture = ExtResource( 5 )
+
+

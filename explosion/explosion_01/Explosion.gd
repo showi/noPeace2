@@ -20,3 +20,4 @@ func kill():
 
 func _remove():
     get_parent().remove_child(self)
+    queue_free()

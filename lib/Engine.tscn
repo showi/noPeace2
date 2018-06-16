@@ -5,8 +5,8 @@
 [node name="Engine" type="Node"]
 
 script = ExtResource( 1 )
-speed = Vector2( 5, 8 )
-minVelocity = Vector2( 0, 0 )
-maxVelocity = Vector2( 400, 600 )
+speed = 50
+minVelocity = 0
+maxVelocity = 400
 
 
