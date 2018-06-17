@@ -2,8 +2,9 @@
 
 [ext_resource path="res://level/level_01/Level.gd" type="Script" id=1]
 [ext_resource path="res://tileset/TileSetEdit_Terrain.tres" type="TileSet" id=2]
-[ext_resource path="res://enemy/turret01/Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://enemy/turret01/Turret.tscn" type="PackedScene" id=3]
 [ext_resource path="res://lib/SpawnPoint.tscn" type="PackedScene" id=4]
+
 
 [node name="Level" type="Node2D"]
 

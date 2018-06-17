@@ -13,8 +13,8 @@ func _ready():
     setRadius(radius)
 
 func do_connect():
-    connect('area_entered', self, 'on_detection')
-    connect('area_exited', self, 'on_loose')
+    connect('body_entered', self, 'on_detection')
+    connect('body_exited', self, 'on_loose')
 
 func do_unconnect():
     disconnect('area_entered', self, 'on_detection')
@@ -22,13 +22,15 @@ func do_unconnect():
 
 func on_detection(entity):
     var kind = common.getEntityKind(entity)
-#    if kind == entityKindToDetect:
-    emit_signal('detection', kind, entity, entity.get_global_position() -  get_global_position())
+    print('entity detected', kind)
+    if kind == entityKindToDetect:
+        emit_signal('detection', kind, entity, entity.get_global_position() -  get_global_position())
 
 func on_loose(entity):
     var kind = common.getEntityKind(entity)
-#    if kind == entityKindToDetect:
-    emit_signal('loose', kind, entity, entity.get_global_position() - get_global_position() )
+    print('entity loosed', kind)
+    if kind == entityKindToDetect:
+        emit_signal('loose', kind, entity, entity.get_global_position() - get_global_position() )
 
 func setRadius(_radius):
     $CollisionShape2D.shape.radius = _radius

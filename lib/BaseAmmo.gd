@@ -49,7 +49,7 @@ func fire(powerFactor=powerFactorDefault):
     hitDamage = damage + damage * powerFactor
     set_global_position(shooter.get_global_position())
     set_global_rotation(shooter.get_global_rotation())
-    velocity = Vector2(0, -1).rotated(shooter.rotation) * totalSpeed
+    velocity = Vector2(0, -1).rotated(shooter.get_global_rotation()) * totalSpeed
     apply_scale(Vector2(1 + powerFactor, 1 + powerFactor))
     timer.start()
     show()

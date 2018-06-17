@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ocean_east_2.png-8546fb8221feff4dd49644de1ad8963b.stex"
+path="res://.import/desert_war-enemy-tank.png-a08f23dafe5721585916de294c84e023.stex"
 
 [deps]
 
-source_file="res://asset/terrain/ocean_east_2.png"
-source_md5="b9bab97e0da386be0cb5e5906d96be75"
+source_file="res://asset/enemy/desert_war-enemy-tank.png"
+source_md5="6b32689bd22787387879d582e76d0fd7"
 
-dest_files=[ "res://.import/ocean_east_2.png-8546fb8221feff4dd49644de1ad8963b.stex" ]
-dest_md5="958a4eb9a7b0002ff5f460c3de907307"
+dest_files=[ "res://.import/desert_war-enemy-tank.png-a08f23dafe5721585916de294c84e023.stex" ]
+dest_md5="59d59e77e52e91b38a7c04008031608c"
 
 [params]
 

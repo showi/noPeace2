@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://lib/Engine.tscn" type="PackedScene" id=2]
@@ -13,7 +13,6 @@
 [ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0007.png" type="Texture" id=11]
 [ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0008.png" type="Texture" id=12]
 [ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0009.png" type="Texture" id=13]
-[ext_resource path="res://lib/Shield.tscn" type="PackedScene" id=14]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -54,8 +53,8 @@ bounce = 0.0
 gravity_scale = 1.0
 custom_integrator = false
 continuous_cd = 0
-contacts_reported = 0
-contact_monitor = false
+contacts_reported = 1
+contact_monitor = true
 sleeping = false
 can_sleep = true
 linear_velocity = Vector2( 0, 0 )
@@ -86,7 +85,7 @@ ammoCollisionLayer = 4
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="3"]
 
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.25, 0.25 )
 z_index = 1
 frames = SubResource( 1 )
 animation = "up"
@@ -104,7 +103,7 @@ _sections_unfolded = [ "Material", "Z Index" ]
 anchor_mode = 1
 rotating = false
 current = true
-zoom = Vector2( 2, 2 )
+zoom = Vector2( 1, 1 )
 limit_left = -10000000
 limit_top = -10000000
 limit_right = 10000000
@@ -124,10 +123,6 @@ editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
 _sections_unfolded = [ "Drag Margin", "Limit", "Material", "Smoothing", "Visibility" ]
-
-[node name="Shield" parent="." index="6" instance=ExtResource( 14 )]
-
-_sections_unfolded = [ "Collision", "Material", "Transform" ]
 
 
 [editable path="WeaponSystem"]

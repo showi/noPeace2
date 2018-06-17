@@ -1,34 +1,519 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://asset/terrain/conifer_forest/conifer_forest_inner.png" type="Texture" id=1]
-[ext_resource path="res://asset/terrain/ocean_west_2.png" type="Texture" id=2]
-[ext_resource path="res://asset/terrain/ocean_east_2.png" type="Texture" id=3]
-[ext_resource path="res://asset/terrain/plains.png" type="Texture" id=4]
-[ext_resource path="res://asset/terrain/mountains_inner.png" type="Texture" id=5]
+[ext_resource path="res://asset/terrain/cobbleset-128.png" type="Texture" id=1]
 
-[node name="TileSet" type="Node"]
+[node name="TileSet" type="Node" index="0"]
 
-[node name="conifer_forest_inner" type="Sprite" parent="." index="0"]
+[node name="cobbleset-0" type="Sprite" parent="." index="0"]
 
 visible = false
 texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+_sections_unfolded = [ "Animation", "Offset" ]
 
-[node name="ocean_west_2" type="Sprite" parent="." index="1"]
+[node name="cobbleset-1" type="Sprite" parent="." index="1"]
 
-visible = false
-texture = ExtResource( 2 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 1
+_sections_unfolded = [ "Animation", "Offset" ]
 
-[node name="ocean_east_2" type="Sprite" parent="." index="2"]
+[node name="cobbleset-2" type="Sprite" parent="." index="2"]
 
-visible = false
-texture = ExtResource( 3 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 2
+_sections_unfolded = [ "Animation", "Offset" ]
 
-[node name="plains" type="Sprite" parent="." index="3"]
+[node name="cobbleset-3" type="Sprite" parent="." index="3"]
 
-texture = ExtResource( 4 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 3
+_sections_unfolded = [ "Animation", "Offset" ]
 
-[node name="mountains_inner" type="Sprite" parent="." index="4"]
+[node name="cobbleset-4" type="Sprite" parent="." index="4"]
 
-texture = ExtResource( 5 )
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 4
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-5" type="Sprite" parent="." index="5"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 5
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-6" type="Sprite" parent="." index="6"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 6
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-7" type="Sprite" parent="." index="7"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 7
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-8" type="Sprite" parent="." index="8"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 8
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-9" type="Sprite" parent="." index="9"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 9
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-10" type="Sprite" parent="." index="10"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 10
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-11" type="Sprite" parent="." index="11"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 11
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-12" type="Sprite" parent="." index="12"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 12
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-13" type="Sprite" parent="." index="13"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 13
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-14" type="Sprite" parent="." index="14"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 14
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-15" type="Sprite" parent="." index="15"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 15
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-16" type="Sprite" parent="." index="16"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 16
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-17" type="Sprite" parent="." index="17"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 17
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-18" type="Sprite" parent="." index="18"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 18
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-19" type="Sprite" parent="." index="19"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 19
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-20" type="Sprite" parent="." index="20"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 20
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-21" type="Sprite" parent="." index="21"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 21
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-22" type="Sprite" parent="." index="22"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 22
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-23" type="Sprite" parent="." index="23"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 23
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-24" type="Sprite" parent="." index="24"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 24
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-25" type="Sprite" parent="." index="25"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 25
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-26" type="Sprite" parent="." index="26"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 26
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-27" type="Sprite" parent="." index="27"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 27
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-28" type="Sprite" parent="." index="28"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 28
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-29" type="Sprite" parent="." index="29"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 29
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-30" type="Sprite" parent="." index="30"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 30
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-31" type="Sprite" parent="." index="31"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 31
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-32" type="Sprite" parent="." index="32"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 32
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-33" type="Sprite" parent="." index="33"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 33
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-34" type="Sprite" parent="." index="34"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 34
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-35" type="Sprite" parent="." index="35"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 35
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-36" type="Sprite" parent="." index="36"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 36
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-37" type="Sprite" parent="." index="37"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 37
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-38" type="Sprite" parent="." index="38"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 38
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-39" type="Sprite" parent="." index="39"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 39
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-40" type="Sprite" parent="." index="40"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 40
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-41" type="Sprite" parent="." index="41"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 41
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-42" type="Sprite" parent="." index="42"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 42
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-43" type="Sprite" parent="." index="43"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 43
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-44" type="Sprite" parent="." index="44"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 44
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-45" type="Sprite" parent="." index="45"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 45
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-46" type="Sprite" parent="." index="46"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 46
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-47" type="Sprite" parent="." index="47"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 47
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-48" type="Sprite" parent="." index="48"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 48
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-49" type="Sprite" parent="." index="49"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 49
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-50" type="Sprite" parent="." index="50"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 50
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-51" type="Sprite" parent="." index="51"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 51
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-52" type="Sprite" parent="." index="52"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 52
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-53" type="Sprite" parent="." index="53"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 53
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-54" type="Sprite" parent="." index="54"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 54
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-55" type="Sprite" parent="." index="55"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 55
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-56" type="Sprite" parent="." index="56"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 56
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-57" type="Sprite" parent="." index="57"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 57
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-58" type="Sprite" parent="." index="58"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 58
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-59" type="Sprite" parent="." index="59"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 59
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-60" type="Sprite" parent="." index="60"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 60
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-61" type="Sprite" parent="." index="61"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 61
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-62" type="Sprite" parent="." index="62"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 62
+_sections_unfolded = [ "Animation", "Offset" ]
+
+[node name="cobbleset-63" type="Sprite" parent="." index="63"]
+
+texture = ExtResource( 1 )
+vframes = 8
+hframes = 8
+frame = 63
+_sections_unfolded = [ "Animation", "Offset" ]
 
 

@@ -1,0 +1,84 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://enemy/tank_01/TankTurret.gd" type="Script" id=1]
+[ext_resource path="res://lib/WeaponSystem.tscn" type="PackedScene" id=2]
+[ext_resource path="res://lib/CircularDetection.tscn" type="PackedScene" id=3]
+[ext_resource path="res://asset/enemy/desert_war-enemy-tank.png" type="Texture" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 10.0
+
+[node name="TankTurret" type="Area2D" index="0"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+collision_layer = 2
+collision_mask = 24
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
+speed = 0.25
+angleThreshold = 0.15
+life = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="WeaponSystem" parent="." index="1" instance=ExtResource( 2 )]
+
+[node name="CircularDetection" parent="." index="2" instance=ExtResource( 3 )]
+
+gravity_vec = Vector2( 0, 0 )
+gravity = 0.0
+_sections_unfolded = [ "Collision", "Transform" ]
+radius = 250.0
+
+[node name="Line2D" type="Line2D" parent="." index="3"]
+
+visible = false
+points = PoolVector2Array( 0, 0, 0, -50 )
+width = 1.0
+default_color = Color( 0, 0.166667, 1, 1 )
+texture_mode = 58458114
+sharp_limit = 2.0
+round_precision = 8
+
+[node name="OrientationLine" type="Line2D" parent="." index="4"]
+
+visible = false
+points = PoolVector2Array( 0, 0, 0, -50 )
+width = 1.0
+default_color = Color( 1, 0, 0, 1 )
+texture_mode = 58458114
+sharp_limit = 2.0
+round_precision = 8
+_sections_unfolded = [ "Transform" ]
+
+[node name="Link" type="Line2D" parent="." index="5"]
+
+visible = false
+points = PoolVector2Array( 0, 0, 0, -50 )
+width = 5.0
+default_color = Color( 0.992188, 1, 0, 1 )
+texture_mode = 58458114
+sharp_limit = 2.0
+round_precision = 8
+_sections_unfolded = [ "Fill", "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="." index="6"]
+
+texture = ExtResource( 4 )
+vframes = 6
+hframes = 16
+frame = 16
+_sections_unfolded = [ "Animation", "Offset", "Transform" ]
+
+
