@@ -1,14 +1,32 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://lib/WeaponSystem.gd" type="Script" id=1]
+[ext_resource path="res://weapon/cannon/Cannon.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ammo/energy_ball/Ammo.tscn" type="PackedScene" id=3]
 
-[node name="WeaponSystem" type="Node"]
+[node name="WeaponSystem" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Pause" ]
-ammoPath = "res://ammo/energy_ball/Ammo.tscn"
 cooldown = 0.5
 autoFire = false
 ammoCollisionLayer = 5
+fullPowerTime = 2.0
+
+[node name="Cannons" type="Node2D" parent="." index="0"]
+
+[node name="Cannon1" parent="Cannons" index="0" instance=ExtResource( 2 )]
+
+position = Vector2( -10, 0 )
+
+[node name="Cannon2" parent="Cannons" index="1" instance=ExtResource( 2 )]
+
+[node name="Cannon3" parent="Cannons" index="2" instance=ExtResource( 2 )]
+
+position = Vector2( 10, 0 )
+
+[node name="Ammos" type="Node2D" parent="." index="1"]
+
+[node name="Ammo" parent="Ammos" index="0" instance=ExtResource( 3 )]
 
 

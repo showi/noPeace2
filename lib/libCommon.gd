@@ -1,6 +1,6 @@
 extends Node
 
-var version = '0.0.7'
+var version = '0.0.9'
 var title = 'noPeace'
 
 func _ready():

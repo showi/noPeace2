@@ -4,7 +4,7 @@ export (int) var damage = 20
 export (float) var fullPowerTime = 1.0
 export (int) var speed = 400
 export (float) var powerFactorDefault = 1.0
-export (int) var timeout = 5
+export (float) var timeout = 5
 export (bool) var oneWayCollsion = true
 
 onready var common = get_node('/root/libCommon')
@@ -47,7 +47,7 @@ func fire(powerFactor=powerFactorDefault):
         initialVelocity = clamp(abs(shooter.linear_velocity.y), 1, 1000)
     var totalSpeed =  initialVelocity + speed
     hitDamage = damage + damage * powerFactor
-    set_global_position(shooter.get_global_position())
+#    set_global_position(shooter.get_global_position())
     set_global_rotation(shooter.get_global_rotation())
     velocity = Vector2(0, -1).rotated(shooter.get_global_rotation()) * totalSpeed
     apply_scale(Vector2(1 + powerFactor, 1 + powerFactor))

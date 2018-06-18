@@ -13,6 +13,7 @@ var screensize
 var engine = null
 var world = null
 var killAnimation = null
+var rotationSpeed = 10
 
 func _init():
     set_meta('entityKind', 'Player')
@@ -31,7 +32,6 @@ func _ready():
     engine = get_node('Engine')
 
 func hit(entity):
-    print('player')
     common.hit(self, entity)
 
 func setLife(value):
@@ -47,23 +47,22 @@ func kill():
 func _process(delta):
     var rspeed = 0.66
     if Input.is_action_pressed("ui_right"):
-        self.engine.right()
+        engine.right()
     if Input.is_action_pressed("ui_left"):
-        self.engine.left()
+        engine.left()
     if Input.is_action_pressed("ui_down"):
-        self.engine.down()
+        engine.down()
     if Input.is_action_pressed("ui_up"):
-        self.engine.up()
+        engine.up()
 
     if self.linear_velocity.length():
         $AnimatedSprite.play()
     else:
         $AnimatedSprite.stop()
 
-    if Input.is_action_just_released('ui_accept'):
+    if Input.is_action_just_released('ui_fire'):
         emit_signal('releaseFire')
-        pass
-    elif Input.is_action_just_pressed('ui_accept'):
+    elif Input.is_action_just_pressed('ui_fire'):
         emit_signal('pressFire')
 
     if engine.direction == engine.Direction.LEFT:

@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ammo/laser/Ammo.gd" type="Script" id=1]
+[ext_resource path="res://asset/ammo/MeagaLaser.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 5, 500 )
+
+[node name="Ammo" type="Area2D"]
+
+position = Vector2( 0, -800 )
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+damage = 20
+fullPowerTime = 1.0
+speed = 100
+powerFactorDefault = 2.0
+timeout = 0.3
+oneWayCollsion = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+
+position = Vector2( 0, 300 )
+shape = SubResource( 1 )
+one_way_collision = true
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+
+scale = Vector2( 1, 10 )
+texture = ExtResource( 2 )
+flip_v = true
+region_enabled = true
+region_rect = Rect2( 0, 538, 64, 160 )
+region_filter_clip = true
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
+
+

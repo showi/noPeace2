@@ -1,19 +1,19 @@
-extends Node
+extends Node2D
 
-export (String) var ammoPath = "res://ammo/energy_ball/Ammo.tscn"
 export (float) var cooldown = 0.5
 export (bool) var autoFire = false
 export (int, 4, 5) var ammoCollisionLayer = 5
+export (float) var fullPowerTime = 2.0
 
 signal pctChargingSignal(percentage)
 
 onready var common = get_node('/root/libCommon')
 
-var ammoClass
 var ammo
 var disabled = true
 var elapsed = 0
 var elapsedCoolDown = 0
+var selectedAmmo
 
 enum STATES {
     idle,
@@ -26,15 +26,17 @@ var pctCharging = 0.0
 var isAutofiring = false
 
 func _init():
-    loadAmmo(ammoPath)
+    pass
 
 func _ready():
+    loadAmmos()
     setAutoFire(autoFire)
     state = STATES.idle
     setPctCharging(0)
 
-func loadAmmo(ammoPath):
-    ammoClass = load(ammoPath)
+func loadAmmos():
+    assert $Ammos.get_child_count() != 0
+    selectedAmmo = $Ammos.get_child(0)
 
 func getWorld():
     var world = common.getLevelEntity('LevelDefault/bullets')
@@ -64,16 +66,18 @@ func pressFire():
     elapsed = 0
     pctCharging = 0
     state = STATES.charging
-    ammo = ammoClass.instance()
-    ammo.setWeaponSystem(self)
     return true
 
 func releaseFire():
     if state != STATES.charging:
         return false
     state = STATES.cooldown
-    getWorld().add_child(ammo)
-    ammo.fire(pctCharging)
+    for cannon in $Cannons.get_children():
+        ammo = selectedAmmo.duplicate(DUPLICATE_USE_INSTANCING)
+        ammo.setWeaponSystem(self)
+        ammo.set_global_position(cannon.get_global_position())
+        getWorld().add_child(ammo)
+        ammo.fire(pctCharging)
     setPctCharging(0)
     return true
 
@@ -93,6 +97,6 @@ func _process(delta):
             state = STATES.idle
     if state == STATES.charging:
         elapsed += delta
-        setPctCharging(clamp((elapsed / ammo.fullPowerTime), 0, 1.0))
+        setPctCharging(clamp((elapsed / fullPowerTime), 0, 1.0))
     elif state == STATES.idle and isAutofiring:
         immediateFire()

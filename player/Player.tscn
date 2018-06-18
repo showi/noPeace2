@@ -1,33 +1,35 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://lib/Engine.tscn" type="PackedScene" id=2]
-[ext_resource path="res://hud/Hud.tscn" type="PackedScene" id=3]
-[ext_resource path="res://lib/WeaponSystem.tscn" type="PackedScene" id=4]
-[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0005.png" type="Texture" id=5]
-[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0004.png" type="Texture" id=6]
-[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0003.png" type="Texture" id=7]
-[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0002.png" type="Texture" id=8]
-[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0001.png" type="Texture" id=9]
-[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0006.png" type="Texture" id=10]
-[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0007.png" type="Texture" id=11]
-[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0008.png" type="Texture" id=12]
-[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0009.png" type="Texture" id=13]
+[ext_resource path="res://lib/WeaponSystem.tscn" type="PackedScene" id=3]
+[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0005.png" type="Texture" id=4]
+[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0004.png" type="Texture" id=5]
+[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0003.png" type="Texture" id=6]
+[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0002.png" type="Texture" id=7]
+[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0001.png" type="Texture" id=8]
+[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0006.png" type="Texture" id=9]
+[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0007.png" type="Texture" id=10]
+[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0008.png" type="Texture" id=11]
+[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0009.png" type="Texture" id=12]
+[ext_resource path="res://player/Camera2D.gd" type="Script" id=13]
+[ext_resource path="res://hud/Hud.tscn" type="PackedScene" id=14]
+[ext_resource path="res://lib/Overlay.tscn" type="PackedScene" id=15]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": false,
 "name": "left",
 "speed": 15.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": false,
 "name": "right",
 "speed": 15.0
 }, {
-"frames": [ ExtResource( 5 ) ],
+"frames": [ ExtResource( 4 ) ],
 "loop": false,
 "name": "up",
 "speed": 1.0
@@ -39,16 +41,16 @@ custom_solver_bias = 0.0
 radius = 20.0
 height = 10.0
 
-[node name="Player" type="RigidBody2D"]
+[node name="Player" type="RigidBody2D" index="0"]
 
 z_index = 3
 z_as_relative = false
 input_pickable = false
 collision_layer = 8
 collision_mask = 35
-mode = 2
+mode = 0
 mass = 1.0
-friction = 1.0
+friction = 0.7
 bounce = 0.0
 gravity_scale = 1.0
 custom_integrator = false
@@ -62,28 +64,22 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Applied Forces", "Collision", "Linear", "Material", "Pickable", "Transform", "Visibility", "Z Index" ]
+_sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Material", "Pickable", "Transform", "Visibility", "Z Index" ]
 life = 100.0
 damage = 10.0
 
 [node name="Engine" parent="." index="0" instance=ExtResource( 2 )]
 
+_sections_unfolded = [ "Transform" ]
 speed = 75.0
+rotationSpeed = 1.0
 
-[node name="Hud" parent="." index="1" instance=ExtResource( 3 )]
-
-margin_left = -50.0
-margin_top = 120.0
-margin_right = -50.0
-margin_bottom = 120.0
-_sections_unfolded = [ "Anchor", "Margin", "Material", "Rect", "Visibility" ]
-
-[node name="WeaponSystem" parent="." index="2" instance=ExtResource( 4 )]
+[node name="WeaponSystem" parent="." index="1" instance=ExtResource( 3 )]
 
 cooldown = 0.01
 ammoCollisionLayer = 4
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="3"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="2"]
 
 scale = Vector2( 0.25, 0.25 )
 z_index = 1
@@ -92,16 +88,16 @@ animation = "up"
 playing = true
 _sections_unfolded = [ "Material", "Transform", "Z Index" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
 
 z_index = 1
 shape = SubResource( 2 )
 _sections_unfolded = [ "Material", "Z Index" ]
 
-[node name="Camera2D" type="Camera2D" parent="." index="5"]
+[node name="Camera2D" type="Camera2D" parent="." index="4"]
 
 anchor_mode = 1
-rotating = false
+rotating = true
 current = true
 zoom = Vector2( 1, 1 )
 limit_left = -10000000
@@ -109,20 +105,37 @@ limit_top = -10000000
 limit_right = 10000000
 limit_bottom = 10000000
 limit_smoothed = true
-drag_margin_h_enabled = true
+drag_margin_h_enabled = false
 drag_margin_v_enabled = false
-smoothing_enabled = false
+smoothing_enabled = true
 smoothing_speed = 5.0
 offset_v = 0.0
 offset_h = 0.0
 drag_margin_left = 0.1
-drag_margin_top = 0.1
-drag_margin_right = 0.1
+drag_margin_top = 1.0
+drag_margin_right = 1.0
 drag_margin_bottom = 0.1
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-_sections_unfolded = [ "Drag Margin", "Limit", "Material", "Smoothing", "Visibility" ]
+script = ExtResource( 13 )
+_sections_unfolded = [ "Drag Margin", "Limit", "Material", "Offset", "Smoothing", "Transform", "Visibility" ]
+
+[node name="Hud" parent="Camera2D" index="0" instance=ExtResource( 14 )]
+
+margin_left = -50.0
+margin_top = -370.0
+margin_right = -50.0
+margin_bottom = -370.0
+_sections_unfolded = [ "Anchor", "Margin", "Material", "Rect", "Visibility" ]
+
+[node name="Overlay" parent="Camera2D" index="1" instance=ExtResource( 15 )]
+
+margin_left = -500.0
+margin_top = -380.0
+margin_right = -460.0
+margin_bottom = -340.0
+_sections_unfolded = [ "Anchor", "Theme" ]
 
 
 [editable path="WeaponSystem"]

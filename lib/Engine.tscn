@@ -2,11 +2,24 @@
 
 [ext_resource path="res://lib/Engine.gd" type="Script" id=1]
 
-[node name="Engine" type="Node"]
+[node name="Engine" type="Node2D"]
 
 script = ExtResource( 1 )
-speed = 50
+speed = 10
+rotationSpeed = 3.14159
 minVelocity = 0
-maxVelocity = 400
+maxVelocity = 200
+
+[node name="Speed" type="Line2D" parent="." index="0"]
+
+points = PoolVector2Array( 0, 0, 0, -25 )
+width = 2.0
+default_color = Color( 0.471439, 0.867188, 0.249433, 1 )
+texture_mode = -1993534495
+begin_cap_mode = 1
+end_cap_mode = 2
+sharp_limit = 2.0
+round_precision = 8
+_sections_unfolded = [ "Capping", "Fill" ]
 
 
