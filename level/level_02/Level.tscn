@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://tileset/TileSetEdit_Terrain.tres" type="TileSet" id=1]
 [ext_resource path="res://level/level_02/TrackPath.gd" type="Script" id=2]
 [ext_resource path="res://enemy/tank_01/Tank.tscn" type="PackedScene" id=3]
 [ext_resource path="res://enemy/turret01/Turret.tscn" type="PackedScene" id=4]
+[ext_resource path="res://lib/SpawnPoint.tscn" type="PackedScene" id=5]
+[ext_resource path="res://powerup/life/Life.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -12,7 +14,7 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 192, 576, 0, 0, 0, 0, 1728, 576, 0, 0, 0, 0, 1728, -704, 0, 0, 0, 0, 192, -704, 0, 0, 0, 0, 192, 576 )
 }
 
-[node name="Level" type="Node2D" index="0"]
+[node name="Level" type="Node2D"]
 
 _sections_unfolded = [ "Transform" ]
 
@@ -149,5 +151,14 @@ position = Vector2( 64, 64 )
 [node name="Turret2" parent="." index="3" instance=ExtResource( 4 )]
 
 position = Vector2( 64, 704 )
+
+[node name="SpawnPoint" parent="." index="4" instance=ExtResource( 5 )]
+
+position = Vector2( 415.999, 682.426 )
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Life" parent="." index="5" instance=ExtResource( 6 )]
+
+position = Vector2( 704, -64 )
 
 

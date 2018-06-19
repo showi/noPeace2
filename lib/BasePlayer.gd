@@ -19,17 +19,27 @@ func _init():
     set_meta('entityKind', 'Player')
 
 func _ready():
+    makeCollisionArea()
     killAnimation = common.getResource('explosion', 'explosion_02')    
     connect('body_entered', self, 'hit')
     connect('pressFire', $WeaponSystem, 'pressFire')
     connect('releaseFire', $WeaponSystem, 'releaseFire')
-    $WeaponSystem.connect("pctChargingSignal", $Hud/Power, 'setValue')
-    connect('lifeSignal', $Hud/Life, 'setValue')
+#    $WeaponSystem.connect("pctChargingSignal", $Hud/Power, 'setValue')
+#    connect('lifeSignal', $Hud/Life, 'setValue')
     screensize = common.getScreenSize()
     world = common.getLevelEntity('LevelDefault/bullets')
     if not world:
         world = get_parent()
     engine = get_node('Engine')
+
+func makeCollisionArea():
+    var area = Area2D.new()
+    area.add_child($CollisionShape2D.duplicate())
+    area.monitorable = true
+    area.monitoring = false
+    area.set_collision_layer_bit(common.CollisionLayer.Player, true)
+    area.connect('area_entered', self, 'hit')
+    add_child(area)
 
 func hit(entity):
     common.hit(self, entity)
@@ -75,6 +85,11 @@ func _process(delta):
         $AnimatedSprite.animation = "up"
     elif engine.direction == engine.Direction.RIGHT:
         $AnimatedSprite.animation = "up"
+    
+    $CanvasLayer/Score/Value.text = str(common.getPlayerStat('score'))
+
+func powerupPickup(kind, value):
+    print('powerup pickup :', kind, ': ', value)
 
 func _remove():
     get_parent().remove_child(self)

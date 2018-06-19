@@ -48,14 +48,4 @@ shape = SubResource( 1 )
 one_way_collision = true
 _sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
-[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="." index="2"]
-
-rect = Rect2( -20, -20, 40, 50 )
-pause_animations = true
-freeze_bodies = true
-pause_particles = true
-pause_animated_sprites = true
-process_parent = false
-physics_process_parent = false
-
 

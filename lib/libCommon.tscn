@@ -2,7 +2,7 @@
 
 [ext_resource path="res://lib/libCommon.gd" type="Script" id=1]
 
-[node name="libCommon" type="Node"]
+[node name="libCommon" type="Node" index="0"]
 
 script = ExtResource( 1 )
 

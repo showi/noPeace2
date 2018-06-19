@@ -1,6 +1,6 @@
 extends Node
 
-var version = '0.0.9'
+var version = '0.0.10'
 var title = 'noPeace'
 
 func _ready():
@@ -52,6 +52,18 @@ enum CollisionLayer {
     BulletEnemy =     5
 }
 
+const stats = {
+    'player': {
+       'score': 0 
+   }    
+}
+
+func addPlayerStat(kind, value):
+    stats['player'][kind] += value
+
+func getPlayerStat(kind):
+    return stats['player'][kind]
+
 func _init():
     print('CollisionLayer: ', CollisionLayer)
     
@@ -78,3 +90,10 @@ func setLife(entity, value):
     entity.emit_signal('lifeChanged', value)
     if entity.life <= 0:
         entity.kill()
+
+func destroyEntity(entity):
+    var parent = entity.get_parent()
+    if not parent:
+        return
+    parent.remove_child(self)
+    #queue_free()

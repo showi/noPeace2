@@ -15,8 +15,8 @@ func _init():
 func _ready():
     $detection.shape.points[1] = Vector2(detectionWidth / 2, detectionLength)
     $detection.shape.points[2] = Vector2(-detectionWidth / 2, detectionLength)
-    connect('area_entered', self, 'detected')
-    connect('area_exited', self, 'loose')
+    connect('body_entered', self, 'detected')
+    connect('body_exited', self, 'loose')
 
 func detected(entity):
     var kind = common.getEntityKind(entity)

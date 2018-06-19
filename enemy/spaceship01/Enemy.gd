@@ -6,8 +6,3 @@ func detected(kind, entity):
 
 func loose(kind, entity):
     $WeaponSystem.setAutoFire(false)
-
-func _ready():
-    $Sensor.connect('detected', self, 'detected')
-    $Sensor.connect('loose', self, 'loose')
-    ._ready()

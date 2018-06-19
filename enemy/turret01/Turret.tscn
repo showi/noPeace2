@@ -1,17 +1,18 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://enemy/turret01/Turret.gd" type="Script" id=1]
 [ext_resource path="res://lib/WeaponSystem.tscn" type="PackedScene" id=2]
-[ext_resource path="res://asset/turret/turret_front_mission-gun_hazard.png" type="Texture" id=3]
-[ext_resource path="res://lib/CircularDetection.tscn" type="PackedScene" id=4]
-[ext_resource path="res://hud/Hud.tscn" type="PackedScene" id=5]
+[ext_resource path="res://weapon/cannon/Cannon.tscn" type="PackedScene" id=3]
+[ext_resource path="res://asset/turret/turret_front_mission-gun_hazard.png" type="Texture" id=4]
+[ext_resource path="res://lib/CircularDetection.tscn" type="PackedScene" id=5]
+[ext_resource path="res://hud/Hud.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 20.0
 
-[node name="Turret" type="Area2D" index="0"]
+[node name="Turret" type="Area2D"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 0 )
@@ -42,11 +43,15 @@ _sections_unfolded = [ "Capping", "Fill" ]
 
 [node name="WeaponSystem" parent="." index="1" instance=ExtResource( 2 )]
 
+editor/display_folded = true
+
+[node name="Cannon" parent="WeaponSystem/Cannons" index="0" instance=ExtResource( 3 )]
+
 [node name="Sprite" type="Sprite" parent="." index="2"]
 
 rotation = -3.14159
 scale = Vector2( 1.5, 1.5 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 36, 256, 32, 55 )
 region_filter_clip = true
@@ -57,13 +62,13 @@ _sections_unfolded = [ "Animation", "Material", "Offset", "Region", "Transform",
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="CircularDetection" parent="." index="4" instance=ExtResource( 4 )]
+[node name="CircularDetection" parent="." index="4" instance=ExtResource( 5 )]
 
 gravity_vec = Vector2( 0, 0 )
 gravity = 0.0
 radius = 800.0
 
-[node name="Hud" parent="." index="5" instance=ExtResource( 5 )]
+[node name="Hud" parent="." index="5" instance=ExtResource( 6 )]
 
 margin_left = -50.0
 margin_top = 50.0
@@ -71,3 +76,4 @@ margin_right = 50.0
 margin_bottom = 70.0
 
 
+[editable path="WeaponSystem"]

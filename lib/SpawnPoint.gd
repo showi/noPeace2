@@ -7,8 +7,8 @@ export (float) var spawnSec = 3.0
 
 onready var common = get_node('/root/libCommon')
 
-export (String, 'enemy', 'explosion') var entityKind = 'enemy'
-export (String) var entityName = 'spaceship01'
+export (String, 'enemy', 'explosion', 'flight') var entityKind = 'enemy'
+export (String, 'spaceship01', 'flight_01') var entityName = 'spaceship01'
 
 var entityClass = null
 var entitySpawner = null

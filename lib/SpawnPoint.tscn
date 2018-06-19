@@ -21,12 +21,12 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
-detectionRadius = 50.0
+detectionRadius = 500.0
 oneShot = false
 maxEntitySpawned = 0
-spawnSec = 3.0
-entityKind = "enemy"
-entityName = "spaceship01"
+spawnSec = 5.0
+entityKind = "flight"
+entityName = "flight_01"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 

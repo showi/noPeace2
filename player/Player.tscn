@@ -1,35 +1,36 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://lib/Engine.tscn" type="PackedScene" id=2]
 [ext_resource path="res://lib/WeaponSystem.tscn" type="PackedScene" id=3]
-[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0005.png" type="Texture" id=4]
-[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0004.png" type="Texture" id=5]
-[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0003.png" type="Texture" id=6]
-[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0002.png" type="Texture" id=7]
-[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0001.png" type="Texture" id=8]
-[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0006.png" type="Texture" id=9]
-[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0007.png" type="Texture" id=10]
-[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0008.png" type="Texture" id=11]
-[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0009.png" type="Texture" id=12]
-[ext_resource path="res://player/Camera2D.gd" type="Script" id=13]
-[ext_resource path="res://hud/Hud.tscn" type="PackedScene" id=14]
-[ext_resource path="res://lib/Overlay.tscn" type="PackedScene" id=15]
+[ext_resource path="res://weapon/cannon/Cannon.tscn" type="PackedScene" id=4]
+[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0005.png" type="Texture" id=5]
+[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0004.png" type="Texture" id=6]
+[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0003.png" type="Texture" id=7]
+[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0002.png" type="Texture" id=8]
+[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0001.png" type="Texture" id=9]
+[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0006.png" type="Texture" id=10]
+[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0007.png" type="Texture" id=11]
+[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0008.png" type="Texture" id=12]
+[ext_resource path="res://asset/TurningShip1-by-MillionthVector/redfighter0009.png" type="Texture" id=13]
+[ext_resource path="res://overlay/Score.tscn" type="PackedScene" id=14]
+[ext_resource path="res://hud/Hud.tscn" type="PackedScene" id=15]
+[ext_resource path="res://player/Camera2D.gd" type="Script" id=16]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": false,
 "name": "left",
 "speed": 15.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": false,
 "name": "right",
 "speed": 15.0
 }, {
-"frames": [ ExtResource( 4 ) ],
+"frames": [ ExtResource( 5 ) ],
 "loop": false,
 "name": "up",
 "speed": 1.0
@@ -79,6 +80,16 @@ rotationSpeed = 1.0
 cooldown = 0.01
 ammoCollisionLayer = 4
 
+[node name="Cannon1" parent="WeaponSystem/Cannons" index="0" instance=ExtResource( 4 )]
+
+visible = false
+position = Vector2( -10, 0 )
+
+[node name="Cannon2" parent="WeaponSystem/Cannons" index="1" instance=ExtResource( 4 )]
+
+visible = false
+position = Vector2( 10, 0 )
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="2"]
 
 scale = Vector2( 0.25, 0.25 )
@@ -94,7 +105,28 @@ z_index = 1
 shape = SubResource( 2 )
 _sections_unfolded = [ "Material", "Z Index" ]
 
-[node name="Camera2D" type="Camera2D" parent="." index="4"]
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="4"]
+
+layer = 5
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="Score" parent="CanvasLayer" index="0" instance=ExtResource( 14 )]
+
+margin_left = 20.0
+margin_right = 160.0
+_sections_unfolded = [ "Anchor", "Grow Direction", "Hint", "Margin", "Material", "Rect", "Size Flags", "Visibility" ]
+
+[node name="Hud" parent="CanvasLayer" index="1" instance=ExtResource( 15 )]
+
+margin_left = 470.0
+margin_top = 20.0
+margin_right = 470.0
+_sections_unfolded = [ "Anchor", "Margin", "Material", "Rect", "Visibility" ]
+
+[node name="Camera2D" type="Camera2D" parent="." index="5"]
 
 anchor_mode = 1
 rotating = true
@@ -104,11 +136,11 @@ limit_left = -10000000
 limit_top = -10000000
 limit_right = 10000000
 limit_bottom = 10000000
-limit_smoothed = true
+limit_smoothed = false
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
 smoothing_enabled = true
-smoothing_speed = 5.0
+smoothing_speed = 1.0
 offset_v = 0.0
 offset_h = 0.0
 drag_margin_left = 0.1
@@ -118,24 +150,8 @@ drag_margin_bottom = 0.1
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-script = ExtResource( 13 )
+script = ExtResource( 16 )
 _sections_unfolded = [ "Drag Margin", "Limit", "Material", "Offset", "Smoothing", "Transform", "Visibility" ]
-
-[node name="Hud" parent="Camera2D" index="0" instance=ExtResource( 14 )]
-
-margin_left = -50.0
-margin_top = -370.0
-margin_right = -50.0
-margin_bottom = -370.0
-_sections_unfolded = [ "Anchor", "Margin", "Material", "Rect", "Visibility" ]
-
-[node name="Overlay" parent="Camera2D" index="1" instance=ExtResource( 15 )]
-
-margin_left = -500.0
-margin_top = -380.0
-margin_right = -460.0
-margin_bottom = -340.0
-_sections_unfolded = [ "Anchor", "Theme" ]
 
 
 [editable path="WeaponSystem"]

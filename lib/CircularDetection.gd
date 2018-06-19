@@ -22,13 +22,11 @@ func do_unconnect():
 
 func on_detection(entity):
     var kind = common.getEntityKind(entity)
-    print('entity detected', kind)
     if kind == entityKindToDetect:
         emit_signal('detection', kind, entity, entity.get_global_position() -  get_global_position())
 
 func on_loose(entity):
     var kind = common.getEntityKind(entity)
-    print('entity loosed', kind)
     if kind == entityKindToDetect:
         emit_signal('loose', kind, entity, entity.get_global_position() - get_global_position() )
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://enemy/tank_01/TankTurret.gd" type="Script" id=1]
 [ext_resource path="res://lib/WeaponSystem.tscn" type="PackedScene" id=2]
-[ext_resource path="res://lib/CircularDetection.tscn" type="PackedScene" id=3]
-[ext_resource path="res://asset/enemy/desert_war-enemy-tank.png" type="Texture" id=4]
+[ext_resource path="res://weapon/cannon/Cannon.tscn" type="PackedScene" id=3]
+[ext_resource path="res://lib/CircularDetection.tscn" type="PackedScene" id=4]
+[ext_resource path="res://asset/enemy/desert_war-enemy-tank.png" type="Texture" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -34,7 +35,11 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="WeaponSystem" parent="." index="1" instance=ExtResource( 2 )]
 
-[node name="CircularDetection" parent="." index="2" instance=ExtResource( 3 )]
+editor/display_folded = true
+
+[node name="Cannon" parent="WeaponSystem/Cannons" index="0" instance=ExtResource( 3 )]
+
+[node name="CircularDetection" parent="." index="2" instance=ExtResource( 4 )]
 
 gravity_vec = Vector2( 0, 0 )
 gravity = 0.0
@@ -75,10 +80,11 @@ _sections_unfolded = [ "Fill", "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="." index="6"]
 
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 vframes = 6
 hframes = 16
 frame = 16
 _sections_unfolded = [ "Animation", "Offset", "Transform" ]
 
 
+[editable path="WeaponSystem"]
