@@ -16,7 +16,6 @@ var initialVelocity = 0
 var weaponSystemRef = null
 var engine = null
 
-
 func _init():
     set_meta('entityKind', 'Ammo')
 
@@ -47,7 +46,6 @@ func fire(powerFactor=powerFactorDefault):
         initialVelocity = clamp(abs(shooter.linear_velocity.y), 1, 1000)
     var totalSpeed =  initialVelocity + speed
     hitDamage = damage + damage * powerFactor
-#    set_global_position(shooter.get_global_position())
     set_global_rotation(shooter.get_global_rotation())
     velocity = Vector2(0, -1).rotated(shooter.get_global_rotation()) * totalSpeed
     apply_scale(Vector2(1 + powerFactor, 1 + powerFactor))
@@ -57,12 +55,10 @@ func fire(powerFactor=powerFactorDefault):
 func kill():
     $CollisionShape2D.disabled = true
     hide()
-#    velocity = Vector2(0, 0)
     call_deferred('_remove')
 
 func _remove():
     var world = getWorld()
-    # get_parent().remove_child(self)
     queue_free()
 
 func initTimer():

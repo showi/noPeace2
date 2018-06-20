@@ -65,4 +65,3 @@ func _process(delta):
         fire()
     else:
         stopFire()
-

@@ -25,6 +25,7 @@ _sections_unfolded = [ "Collision" ]
 powerupKind = "life"
 value = 100.0
 lootProbabiliy = 50
+timeout = 3.0
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 

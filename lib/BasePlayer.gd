@@ -64,6 +64,10 @@ func _process(delta):
         engine.down()
     if Input.is_action_pressed("ui_up"):
         engine.up()
+    if Input.is_action_pressed("ui_aero_right"):
+        engine.aero_right()
+    if Input.is_action_pressed("ui_aero_left"):
+        engine.aero_left()
 
     if self.linear_velocity.length():
         $AnimatedSprite.play()

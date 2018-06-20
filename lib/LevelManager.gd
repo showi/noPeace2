@@ -20,7 +20,6 @@ func start():
     add_child(level)
     print('LevelManager: ', get_path())
     
-
 func loadLevel(levelName):
     return load(common.getLevelPath(levelName)).instance()
 

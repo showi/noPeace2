@@ -42,7 +42,7 @@ custom_solver_bias = 0.0
 radius = 20.0
 height = 10.0
 
-[node name="Player" type="RigidBody2D" index="0"]
+[node name="Player" type="RigidBody2D"]
 
 z_index = 3
 z_as_relative = false
@@ -50,7 +50,7 @@ input_pickable = false
 collision_layer = 8
 collision_mask = 35
 mode = 0
-mass = 1.0
+mass = 10.0
 friction = 0.7
 bounce = 0.0
 gravity_scale = 1.0
@@ -72,13 +72,17 @@ damage = 10.0
 [node name="Engine" parent="." index="0" instance=ExtResource( 2 )]
 
 _sections_unfolded = [ "Transform" ]
-speed = 75.0
-rotationSpeed = 1.0
+speed = 400.0
+rotationSpeed = 10.0
 
 [node name="WeaponSystem" parent="." index="1" instance=ExtResource( 3 )]
 
 cooldown = 0.01
 ammoCollisionLayer = 4
+
+[node name="Cannons" parent="WeaponSystem" index="0"]
+
+editor/display_folded = true
 
 [node name="Cannon1" parent="WeaponSystem/Cannons" index="0" instance=ExtResource( 4 )]
 
@@ -89,6 +93,10 @@ position = Vector2( -10, 0 )
 
 visible = false
 position = Vector2( 10, 0 )
+
+[node name="Ammos" parent="WeaponSystem" index="1"]
+
+editor/display_folded = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="2"]
 
@@ -107,6 +115,7 @@ _sections_unfolded = [ "Material", "Z Index" ]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="4"]
 
+editor/display_folded = true
 layer = 5
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -117,7 +126,7 @@ transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
 margin_left = 20.0
 margin_right = 160.0
-_sections_unfolded = [ "Anchor", "Grow Direction", "Hint", "Margin", "Material", "Rect", "Size Flags", "Visibility" ]
+_sections_unfolded = [ "Anchor", "Grow Direction", "Hint", "Margin", "Material", "Rect", "Size Flags", "Theme", "Visibility" ]
 
 [node name="Hud" parent="CanvasLayer" index="1" instance=ExtResource( 15 )]
 
@@ -138,14 +147,14 @@ limit_right = 10000000
 limit_bottom = 10000000
 limit_smoothed = false
 drag_margin_h_enabled = false
-drag_margin_v_enabled = false
+drag_margin_v_enabled = true
 smoothing_enabled = true
 smoothing_speed = 1.0
-offset_v = 0.0
+offset_v = -0.7
 offset_h = 0.0
 drag_margin_left = 0.1
-drag_margin_top = 1.0
-drag_margin_right = 1.0
+drag_margin_top = 0.1
+drag_margin_right = 0.1
 drag_margin_bottom = 0.1
 editor_draw_screen = true
 editor_draw_limits = false

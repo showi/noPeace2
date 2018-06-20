@@ -20,4 +20,4 @@ func kill():
     call_deferred('_remove')
 
 func _remove():
-    get_parent().remove_child(self)
+    queue_free()

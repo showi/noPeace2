@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://tileset/TileSetEdit_Terrain.tres" type="TileSet" id=1]
 [ext_resource path="res://level/level_02/TrackPath.gd" type="Script" id=2]
 [ext_resource path="res://enemy/tank_01/Tank.tscn" type="PackedScene" id=3]
-[ext_resource path="res://enemy/turret01/Turret.tscn" type="PackedScene" id=4]
-[ext_resource path="res://lib/SpawnPoint.tscn" type="PackedScene" id=5]
-[ext_resource path="res://powerup/life/Life.tscn" type="PackedScene" id=6]
+[ext_resource path="res://tileset/SpaceTileset.tres" type="TileSet" id=4]
+[ext_resource path="res://enemy/turret01/Turret.tscn" type="PackedScene" id=5]
+[ext_resource path="res://lib/SpawnPoint.tscn" type="PackedScene" id=6]
+[ext_resource path="res://powerup/life/Life.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -20,6 +21,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Ground" type="TileMap" parent="." index="0"]
 
+editor/display_folded = true
 mode = 0
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 128, 128 )
@@ -144,21 +146,75 @@ _sections_unfolded = [ "Transform" ]
 rotation = 1.5708
 _sections_unfolded = [ "Linear", "Transform" ]
 
-[node name="Turret" parent="." index="2" instance=ExtResource( 4 )]
+[node name="Wall" type="TileMap" parent="." index="2"]
 
-position = Vector2( 64, 64 )
+mode = 0
+tile_set = ExtResource( 4 )
+cell_size = Vector2( 64, 64 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 4, 0, 0, 5, 1, 0, 6, 2, 0, 65540, 5, 0, 65541, 4, 0, 65542, 5, 0, 131076, 6, 0, 131077, 7, 0, 131078, 8, 0 )
 
-[node name="Turret2" parent="." index="3" instance=ExtResource( 4 )]
+[node name="Turret" parent="." index="3" instance=ExtResource( 5 )]
+
+position = Vector2( 352, 96 )
+
+[node name="Turret2" parent="." index="4" instance=ExtResource( 5 )]
 
 position = Vector2( 64, 704 )
 
-[node name="SpawnPoint" parent="." index="4" instance=ExtResource( 5 )]
+[node name="SpawnPoint" parent="." index="5" instance=ExtResource( 6 )]
 
 position = Vector2( 415.999, 682.426 )
 _sections_unfolded = [ "Collision", "Transform" ]
 
-[node name="Life" parent="." index="5" instance=ExtResource( 6 )]
+[node name="Life" parent="." index="6" instance=ExtResource( 7 )]
 
 position = Vector2( 704, -64 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="7"]
+
+editor/display_folded = true
+visible = false
+position = Vector2( 576, 448 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D" index="0"]
+
+polygon = PoolVector2Array( 0, 0, 384, 0, 448, -64, 512, -192, 512, -320, 448, -384, 320, -448, 192, -384, 0, -320, -64, -192, -64, -64 )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+_sections_unfolded = [ "Texture" ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" index="1"]
+
+build_mode = 0
+polygon = PoolVector2Array(  )
 
 

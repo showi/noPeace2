@@ -90,10 +90,3 @@ func setLife(entity, value):
     entity.emit_signal('lifeChanged', value)
     if entity.life <= 0:
         entity.kill()
-
-func destroyEntity(entity):
-    var parent = entity.get_parent()
-    if not parent:
-        return
-    parent.remove_child(self)
-    #queue_free()

@@ -6,6 +6,7 @@ export (float) var lifeTime = 10.0
 export (float) var points = 250
 
 signal lifeChanged(value)
+signal hasBeenKilled()
 
 onready var common = get_node('/root/libCommon')
 
@@ -22,7 +23,7 @@ func _init():
     killTimer = Timer.new()
     killTimer.set_wait_time(lifeTime)
     killTimer.one_shot = true
-    killTimer.connect('timeout', self, 'kill')
+    killTimer.connect('timeout', self, '_remove', [], CONNECT_DEFERRED)
     add_child(killTimer)
 
 func _ready():
@@ -58,10 +59,11 @@ func _process(delta):
 func kill():
     common.kill(self, killAnimation)
     common.addPlayerStat('score', points)
+    emit_signal('hasBeenKilled')
+    call_deferred('_remove')
+
+func remove():
     call_deferred('_remove')
 
 func _remove():
-    var parent = get_parent()
-    if not parent:
-        return
     queue_free()

@@ -1,7 +1,7 @@
 extends Node2D
 
 export (float) var speed = 10
-export (float) var rotationSpeed = PI
+export (float) var rotationSpeed = 1000
 
 export (float) var minVelocity = 0
 export (float) var maxVelocity = 200
@@ -54,22 +54,23 @@ func down():
 
 func _rotate(direction, radiant):
     _rotate= radiant
-#    parent.rotate(_rotate)
-    var l = parent.linear_velocity.length()
-#    parent.apply_impulse(position, get_impulse(VECTOR_UP))
-#    var gpos = parent.get_global_position()
-    parent.apply_impulse(Vector2(0, -10), Vector2(radiant, 0))
-#    parent.rotate(radiant)
-#    parent.appy_torque(Vector2(0, radiant))
+    parent.apply_impulse(Vector2(0, -20), Vector2(radiant, 0))
     
 func right():
-    _rotate(1, rotationSpeed)
+    parent.apply_impulse(position, get_impulse(VECTOR_RIGHT))
     _pressDirection(Direction.RIGHT)
 
 func left():
-    _rotate(-1, -rotationSpeed)
+    parent.apply_impulse(position, get_impulse(VECTOR_LEFT))
     _pressDirection(Direction.LEFT)
 
+func aero_right():
+    _rotate(1, rotationSpeed)
+    _pressDirection(Direction.RIGHT)
+
+func aero_left():
+    _rotate(-1, -rotationSpeed)
+    _pressDirection(Direction.LEFT)
 
 func _process(delta):
     $Speed.points[1] = lastImpulse * 10
@@ -77,5 +78,4 @@ func _process(delta):
 func _integrate_forces(delta):
     print('integrate')
     if _rotate:
-      
         _rotate = 0
