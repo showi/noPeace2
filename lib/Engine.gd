@@ -55,7 +55,7 @@ func down():
 func _rotate(direction, radiant):
     _rotate= radiant
     parent.apply_impulse(Vector2(0, -20), Vector2(radiant, 0))
-    
+
 func right():
     parent.apply_impulse(position, get_impulse(VECTOR_RIGHT))
     _pressDirection(Direction.RIGHT)

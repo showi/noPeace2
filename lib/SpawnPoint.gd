@@ -27,7 +27,7 @@ func _ready():
     level = common.getLevelManager()
     apply_scale(Vector2(detectionRadius, detectionRadius))
     connect('body_entered', self, 'on_detected', [], CONNECT_FLAGS)
-    connect('body_exited', self, 'on_loose', [], CONNECT_FLAGS)    
+    connect('body_exited', self, 'on_loose', [], CONNECT_FLAGS)
     add_child(entitySpawner)
     entityClass = common.getResource(entityKind, entityName)
 

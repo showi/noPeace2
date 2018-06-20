@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://wall/Wall.gd" type="Script" id=1]
+
+[node name="Wall" type="Line2D" index="0"]
+
+points = PoolVector2Array( 0, 0, 0, 256 )
+width = 10.0
+default_color = Color( 0, 0, 0, 1 )
+texture_mode = -1355411093
+begin_cap_mode = 1
+end_cap_mode = 2
+sharp_limit = 2.0
+round_precision = 8
+script = ExtResource( 1 )
+_sections_unfolded = [ "Capping", "Collision", "Transform" ]
+
+

@@ -2,7 +2,7 @@ extends RigidBody2D
 
 export (float) var speed = 200
 export (float) var life = 10
-export (float) var lifeTime = 10.0
+export (float) var lifeTime = 6000.0
 export (float) var points = 250
 
 signal lifeChanged(value)
@@ -32,8 +32,7 @@ func _ready():
     weaponSystem = $WeaponSystem
     engine = $Engine
     world = common.getLevelEntity('LevelDefault/bullets')
-    $Sensor.connect('detected', self, 'detected')
-    $Sensor.connect('loose', self, 'loose')
+    linear_velocity = Vector2(0, -speed).rotated(get_global_rotation())
     killTimer.start()
 
 func makeCollisionArea():
@@ -54,7 +53,6 @@ func hit(entity):
 func _process(delta):
     if life <= 0:
         return kill()
-    engine.up()
 
 func kill():
     common.kill(self, killAnimation)

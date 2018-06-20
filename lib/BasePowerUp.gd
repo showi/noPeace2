@@ -14,7 +14,7 @@ func _process(delta):
     elapsed += delta
     if elapsed >= timeout:
         kill()
-    
+
 func on_pickup(entity):
     entity.get_parent().powerupPickup(powerupKind, value)
     kill()

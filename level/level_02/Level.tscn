@@ -1,12 +1,15 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://tileset/TileSetEdit_Terrain.tres" type="TileSet" id=1]
-[ext_resource path="res://level/level_02/TrackPath.gd" type="Script" id=2]
-[ext_resource path="res://enemy/tank_01/Tank.tscn" type="PackedScene" id=3]
+[ext_resource path="res://level/level_02/Level.gd" type="Script" id=1]
+[ext_resource path="res://autonomous/Autonomous.tscn" type="PackedScene" id=2]
+[ext_resource path="res://tileset/TileSetEdit_Terrain.tres" type="TileSet" id=3]
 [ext_resource path="res://tileset/SpaceTileset.tres" type="TileSet" id=4]
-[ext_resource path="res://enemy/turret01/Turret.tscn" type="PackedScene" id=5]
-[ext_resource path="res://lib/SpawnPoint.tscn" type="PackedScene" id=6]
-[ext_resource path="res://powerup/life/Life.tscn" type="PackedScene" id=7]
+[ext_resource path="res://wall/Wall.tscn" type="PackedScene" id=5]
+[ext_resource path="res://level/level_02/StaticBody2D.gd" type="Script" id=6]
+[ext_resource path="res://level/level_02/Navigation2D.gd" type="Script" id=7]
+[ext_resource path="res://level/level_02/AirPath.gd" type="Script" id=8]
+[ext_resource path="res://asset/powerup/heart pixel art 64x64.png" type="Texture" id=9]
+[ext_resource path="res://enemy/spaceship01/Enemy.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -15,15 +18,66 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 192, 576, 0, 0, 0, 0, 1728, 576, 0, 0, 0, 0, 1728, -704, 0, 0, 0, 0, 192, -704, 0, 0, 0, 0, 192, 576 )
 }
 
-[node name="Level" type="Node2D"]
+[sub_resource type="NavigationPolygon" id=2]
 
+vertices = PoolVector2Array( 1776, -2288, 1776, 752, 1088, 256, 1088, 128, 1024, 64, 16, -2288, 896, 0, 1024, 384, 768, 64, 576, 128, 16, 752, 512, 256, 960, 448, 576, 448, 512, 384 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 0, 3, 4, 5 ), PoolIntArray( 5, 4, 6 ), PoolIntArray( 7, 2, 1 ), PoolIntArray( 5, 6, 8, 9 ), PoolIntArray( 10, 5, 9, 11 ), PoolIntArray( 12, 7, 1 ), PoolIntArray( 12, 1, 10, 13 ), PoolIntArray( 14, 13, 10 ), PoolIntArray( 14, 10, 11 ), PoolIntArray( 14, 11, 11 ) ]
+outlines = [ PoolVector2Array( 512, 256, 576, 128, 768, 64, 896, 0, 1024, 64, 1088, 128, 1088, 256, 1024, 384, 960, 448, 576, 448, 512, 384, 512, 256 ), PoolVector2Array( 16, 752, 1776, 752, 1776, -2288, 16, -2288 ) ]
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="Curve2D" id=3]
+
+bake_interval = 5.0
+_data = {
+"points": PoolVector2Array( 0, 0, -275.075, 115.489, -240, -112, 50.3954, -151.186, -52.4952, 142.787, -608, 208, -35.6967, -178.484, 130.188, 149.086, -640, 640, -214.18, -109.19, 216.28, 56.6948, -304, 896, -212.081, -6.29942, 201.581, 10.499, 224, 960, -182.683, 113.39, 83.9923, -109.19, 688, 832, -12.5988, 111.29, -6.29942, -159.585, 816, 496, 100.791, 92.3915, -146.987, -111.29, 672, 144, 222.58, -18.8983, 0, 0, -240, -112 )
+}
+
+[node name="Level" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Ground" type="TileMap" parent="." index="0"]
+[node name="Autonomous2" parent="." index="0" instance=ExtResource( 2 )]
+
+position = Vector2( 128, 640 )
+z_index = 1
+collision_layer = 2
+_sections_unfolded = [ "Collision", "Transform", "Z Index" ]
+
+[node name="Autonomous3" parent="." index="1" instance=ExtResource( 2 )]
+
+position = Vector2( 144, -400 )
+z_index = 1
+collision_layer = 2
+_sections_unfolded = [ "Collision", "Transform", "Z Index" ]
+
+[node name="Autonomous4" parent="." index="2" instance=ExtResource( 2 )]
+
+position = Vector2( 928, -128 )
+z_index = 1
+collision_layer = 2
+_sections_unfolded = [ "Collision", "Transform", "Z Index" ]
+
+[node name="Autonomous5" parent="." index="3" instance=ExtResource( 2 )]
+
+position = Vector2( 1392, 384 )
+z_index = 1
+collision_layer = 2
+_sections_unfolded = [ "Collision", "Transform", "Z Index" ]
+
+[node name="Autonomous6" parent="." index="4" instance=ExtResource( 2 )]
+
+position = Vector2( 1632, 608 )
+z_index = 1
+collision_layer = 2
+_sections_unfolded = [ "Collision", "Transform", "Z Index" ]
+
+[node name="Ground" type="TileMap" parent="." index="5"]
 
 editor/display_folded = true
+visible = false
 mode = 0
-tile_set = ExtResource( 1 )
+tile_set = ExtResource( 3 )
 cell_size = Vector2( 128, 128 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -43,51 +97,15 @@ _sections_unfolded = [ "Cell" ]
 
 [node name="RoadPath" type="Path2D" parent="Ground" index="0"]
 
-editor/display_folded = true
 curve = SubResource( 1 )
 
-[node name="TrackPath" type="PathFollow2D" parent="Ground/RoadPath" index="0"]
-
-position = Vector2( 192, 576 )
-offset = 0.0
-h_offset = 0.0
-v_offset = 0.0
-rotate = true
-cubic_interp = true
-loop = true
-lookahead = 4.0
-script = ExtResource( 2 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Tank" parent="Ground/RoadPath/TrackPath" index="0" instance=ExtResource( 3 )]
-
-rotation = 1.5708
-_sections_unfolded = [ "Linear", "Transform" ]
-
-[node name="TrackPath2" type="PathFollow2D" parent="Ground/RoadPath" index="1"]
-
-position = Vector2( 751.973, 576 )
-offset = 561.665
-h_offset = 0.0
-v_offset = 0.0
-rotate = true
-cubic_interp = true
-loop = true
-lookahead = 4.0
-script = ExtResource( 2 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Tank" parent="Ground/RoadPath/TrackPath2" index="0" instance=ExtResource( 3 )]
-
-rotation = 1.5708
-_sections_unfolded = [ "Linear", "Transform" ]
-
-[node name="Ground2" type="TileMap" parent="." index="1"]
+[node name="Ground2" type="TileMap" parent="." index="6"]
 
 editor/display_folded = true
+visible = false
 position = Vector2( 0, -1536 )
 mode = 0
-tile_set = ExtResource( 1 )
+tile_set = ExtResource( 3 )
 cell_size = Vector2( 128, 128 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -107,47 +125,11 @@ _sections_unfolded = [ "Cell", "Transform" ]
 
 [node name="RoadPath" type="Path2D" parent="Ground2" index="0"]
 
-editor/display_folded = true
 curve = SubResource( 1 )
 
-[node name="TrackPath" type="PathFollow2D" parent="Ground2/RoadPath" index="0"]
+[node name="Wall" type="TileMap" parent="." index="7"]
 
-position = Vector2( 192, 576 )
-offset = 0.0
-h_offset = 0.0
-v_offset = 0.0
-rotate = true
-cubic_interp = true
-loop = true
-lookahead = 4.0
-script = ExtResource( 2 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Tank" parent="Ground2/RoadPath/TrackPath" index="0" instance=ExtResource( 3 )]
-
-rotation = 1.5708
-_sections_unfolded = [ "Linear", "Transform" ]
-
-[node name="TrackPath2" type="PathFollow2D" parent="Ground2/RoadPath" index="1"]
-
-position = Vector2( 751.973, 576 )
-offset = 561.665
-h_offset = 0.0
-v_offset = 0.0
-rotate = true
-cubic_interp = true
-loop = true
-lookahead = 4.0
-script = ExtResource( 2 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Tank" parent="Ground2/RoadPath/TrackPath2" index="0" instance=ExtResource( 3 )]
-
-rotation = 1.5708
-_sections_unfolded = [ "Linear", "Transform" ]
-
-[node name="Wall" type="TileMap" parent="." index="2"]
-
+visible = false
 mode = 0
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 64, 64 )
@@ -166,41 +148,48 @@ occluder_light_mask = 1
 format = 1
 tile_data = PoolIntArray( 4, 0, 0, 5, 1, 0, 6, 2, 0, 65540, 5, 0, 65541, 4, 0, 65542, 5, 0, 131076, 6, 0, 131077, 7, 0, 131078, 8, 0 )
 
-[node name="Turret" parent="." index="3" instance=ExtResource( 5 )]
+[node name="Wall_up" parent="." index="8" instance=ExtResource( 5 )]
 
-position = Vector2( 352, 96 )
+position = Vector2( -32.705, -2304 )
+rotation = 1.5708
+scale = Vector2( 1, 1.01815 )
+points = PoolVector2Array( -7.83308e-05, -1792, -1.39876e-06, -32 )
 
-[node name="Turret2" parent="." index="4" instance=ExtResource( 5 )]
+[node name="Wall_right" parent="." index="9" instance=ExtResource( 5 )]
 
-position = Vector2( 64, 704 )
+position = Vector2( 1792, 0 )
+points = PoolVector2Array( 0, -2304, 0, 768 )
 
-[node name="SpawnPoint" parent="." index="5" instance=ExtResource( 6 )]
+[node name="Wall_down" parent="." index="10" instance=ExtResource( 5 )]
 
-position = Vector2( 415.999, 682.426 )
-_sections_unfolded = [ "Collision", "Transform" ]
+position = Vector2( -32.3947, 768 )
+rotation = 1.5708
+scale = Vector2( 1, 1.01815 )
+points = PoolVector2Array( -7.83308e-05, -1792, -1.39876e-06, -32 )
 
-[node name="Life" parent="." index="6" instance=ExtResource( 7 )]
+[node name="Wall_left" parent="." index="11" instance=ExtResource( 5 )]
 
-position = Vector2( 704, -64 )
+points = PoolVector2Array( 0, -2304, 0, 768 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="7"]
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="12"]
 
 editor/display_folded = true
-visible = false
 position = Vector2( 576, 448 )
 input_pickable = false
-collision_layer = 1
-collision_mask = 1
+collision_layer = 64
+collision_mask = 48
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
+script = ExtResource( 6 )
+_sections_unfolded = [ "Collision" ]
 
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D" index="0"]
 
 polygon = PoolVector2Array( 0, 0, 384, 0, 448, -64, 512, -192, 512, -320, 448, -384, 320, -448, 192, -384, 0, -320, -64, -192, -64, -64 )
 uv = PoolVector2Array(  )
-color = Color( 1, 1, 1, 1 )
+color = Color( 0, 0, 0, 1 )
 vertex_colors = PoolColorArray(  )
 offset = Vector2( 0, 0 )
 antialiased = false
@@ -210,11 +199,71 @@ texture_scale = Vector2( 1, 1 )
 texture_rotation_degrees = 0.0
 invert_enable = false
 invert_border = 100.0
-_sections_unfolded = [ "Texture" ]
+_sections_unfolded = [ "Material", "Texture" ]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" index="1"]
 
 build_mode = 0
 polygon = PoolVector2Array(  )
+_sections_unfolded = [ "Material" ]
+
+[node name="Area2D" type="Area2D" parent="StaticBody2D" index="2"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+monitorable = false
+collision_layer = 64
+collision_mask = 48
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="Navigation2D" type="Navigation2D" parent="." index="13"]
+
+visible = false
+script = ExtResource( 7 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D" index="0"]
+
+navpoly = SubResource( 2 )
+enabled = true
+
+[node name="AirPath" type="Node2D" parent="." index="14"]
+
+editor/display_folded = true
+position = Vector2( 800, -240 )
+script = ExtResource( 8 )
+
+[node name="AirPath1" type="Path2D" parent="AirPath" index="0"]
+
+curve = SubResource( 3 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="AirPath/AirPath1" index="0"]
+
+position = Vector2( 340.259, -3.35526 )
+rotation = -2.82674
+offset = 3524.44
+h_offset = 0.0
+v_offset = 0.0
+rotate = true
+cubic_interp = true
+loop = true
+lookahead = 4.0
+
+[node name="Sprite2" type="Sprite" parent="AirPath/AirPath1/PathFollow2D" index="0"]
+
+rotation = 0.763177
+texture = ExtResource( 9 )
+
+[node name="Enemy" parent="AirPath/AirPath1/PathFollow2D" index="1" instance=ExtResource( 10 )]
+
+visible = false
+rotation = 0.763177
+mode = 3
+_sections_unfolded = [ "Angular", "Collision", "Linear", "Pickable", "Transform", "Z Index" ]
+speed = 0.0
 
 

@@ -22,7 +22,7 @@ z_index = 3
 z_as_relative = false
 input_pickable = false
 collision_layer = 2
-collision_mask = 56
+collision_mask = 120
 mode = 0
 mass = 1.0
 friction = 1.0
@@ -39,10 +39,10 @@ linear_damp = 0.1
 angular_velocity = 0.0
 angular_damp = 1.0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Pickable", "Transform", "Z Index" ]
+_sections_unfolded = [ "Collision", "Linear", "Pickable", "Transform", "Z Index" ]
 speed = 100.0
 life = 25.0
-lifeTime = 60.0
+lifeTime = 60000.0
 points = 250
 
 [node name="Hud" parent="." index="0" instance=ExtResource( 2 )]
@@ -109,9 +109,7 @@ _sections_unfolded = [ "Material", "Transform", "Visibility", "Z Index" ]
 [node name="Sensor" parent="." index="6" instance=ExtResource( 8 )]
 
 position = Vector2( 0, 0.5 )
-collision_layer = 0
-collision_mask = 8
-entityKindToDetect = "Player"
+detectionType = "Cone"
 detectionLength = 800.0
 detectionWidth = 600.0
 

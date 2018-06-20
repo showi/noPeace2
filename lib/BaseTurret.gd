@@ -17,8 +17,6 @@ func _ready():
     killAnimation = common.getResource('explosion', 'explosion_02')
     $CircularDetection.connect('detection', self, 'detection')
     $CircularDetection.connect('loose', self, 'loose')
-#    connect('lifeSignal', $Hud/Life, 'setValue')
-#    $WeaponSystem.connect("pctChargingSignal", $Hud/Power, 'setValue')
     connect('area_entered', self, 'hit')
 
 func hit(obj):

@@ -23,7 +23,7 @@ func _process(delta):
         $AudioStreamPlayer.stop()
         kill()"
 
-[node name="Explosion" type="Node2D"]
+[node name="Explosion" type="Node2D" index="0"]
 
 z_index = 4
 z_as_relative = false

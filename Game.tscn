@@ -9,5 +9,6 @@
 script = ExtResource( 1 )
 _sections_unfolded = [ "Material", "Pause", "Visibility" ]
 levelName = "level_02"
+recording = false
 
 

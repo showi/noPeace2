@@ -1,29 +1,33 @@
 extends Area2D
 
-signal detected(kind, entity)
-signal loose(kind, entity)
-
-export (String, 'Player', 'Enemy') var entityKindToDetect
+export (String, 'Cone', 'Circle') var detectionType = 'Cone'
 export (float) var detectionLength = 100.0
 export (float) var detectionWidth = 20.0
 
 onready var common = get_node('/root/libCommon')
 
+var availableShapes = {}
+
 func _init():
     pass
 
 func _ready():
-    $detection.shape.points[1] = Vector2(detectionWidth / 2, detectionLength)
-    $detection.shape.points[2] = Vector2(-detectionWidth / 2, detectionLength)
-    connect('body_entered', self, 'detected')
-    connect('body_exited', self, 'loose')
+    for shape in get_children():
+        availableShapes[shape.get_name()] = shape
+        remove_child(shape)
+    setShape(detectionType)
 
-func detected(entity):
-    var kind = common.getEntityKind(entity)
-    if kind == entityKindToDetect:
-        emit_signal('detected', kind, entity)
+func setShape(name):
+    for shape in get_children():
+        remove_child(shape)
+    var shape = availableShapes[detectionType]
+    add_child(shape)
+    var method_name = '_shape_init_%s' % detectionType.to_lower()
+    call(method_name)
 
-func loose(entity):
-    var kind = common.getEntityKind(entity)
-    if kind == entityKindToDetect:
-        emit_signal('loose', kind, entity)
+func _shape_init_cone():
+    get_node(detectionType).shape.points[1] = Vector2(detectionWidth / 2, detectionLength)
+    get_node(detectionType).shape.points[2] = Vector2(-detectionWidth / 2, detectionLength)
+
+func _shape_init_circle():
+    get_node(detectionType).shape.radius = detectionLength

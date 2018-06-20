@@ -20,12 +20,10 @@ func _init():
 
 func _ready():
     makeCollisionArea()
-    killAnimation = common.getResource('explosion', 'explosion_02')    
+    killAnimation = common.getResource('explosion', 'explosion_02')
     connect('body_entered', self, 'hit')
     connect('pressFire', $WeaponSystem, 'pressFire')
     connect('releaseFire', $WeaponSystem, 'releaseFire')
-#    $WeaponSystem.connect("pctChargingSignal", $Hud/Power, 'setValue')
-#    connect('lifeSignal', $Hud/Life, 'setValue')
     screensize = common.getScreenSize()
     world = common.getLevelEntity('LevelDefault/bullets')
     if not world:
@@ -89,7 +87,7 @@ func _process(delta):
         $AnimatedSprite.animation = "up"
     elif engine.direction == engine.Direction.RIGHT:
         $AnimatedSprite.animation = "up"
-    
+
     $CanvasLayer/Score/Value.text = str(common.getPlayerStat('score'))
 
 func powerupPickup(kind, value):

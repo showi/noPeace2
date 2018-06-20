@@ -21,12 +21,12 @@ func _init():
 
 func _ready():
     hide()
-    initTimer()    
+    initTimer()
 
 func _process(delta):
     if velocity:
         position += velocity * delta
-    
+
 func setWeaponSystem(obj):
     weaponSystemRef = weakref(obj)
     set_collision_layer_bit(obj.ammoCollisionLayer, true)

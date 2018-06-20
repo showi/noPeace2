@@ -35,7 +35,6 @@ _sections_unfolded = [ "Pause" ]
 [node name="Life" parent="Loots" index="0" instance=ExtResource( 3 )]
 
 _sections_unfolded = [ "Collision", "Material", "Pause", "Visibility" ]
-timeout = 3.0
 
 [node name="Line2D" type="Line2D" parent="." index="2"]
 
