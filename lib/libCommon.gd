@@ -49,7 +49,8 @@ enum CollisionLayer {
     Detection =       2,
     Player =          3
     BulletPlayer =    4,
-    BulletEnemy =     5
+    BulletEnemy =     5,
+    Wall =            6,
 }
 
 const stats = {

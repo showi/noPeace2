@@ -4,9 +4,9 @@
 [ext_resource path="res://level/level_02/TrackPath.gd" type="Script" id=2]
 [ext_resource path="res://enemy/tank_01/Tank.tscn" type="PackedScene" id=3]
 [ext_resource path="res://tileset/SpaceTileset.tres" type="TileSet" id=4]
-[ext_resource path="res://enemy/turret01/Turret.tscn" type="PackedScene" id=5]
-[ext_resource path="res://lib/SpawnPoint.tscn" type="PackedScene" id=6]
-[ext_resource path="res://powerup/life/Life.tscn" type="PackedScene" id=7]
+[ext_resource path="res://wall/Wall.tscn" type="PackedScene" id=5]
+[ext_resource path="res://level/level_02/StaticBody2D.gd" type="Script" id=6]
+[ext_resource path="res://lib/SpawnPoint.tscn" type="PackedScene" id=7]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -166,41 +166,48 @@ occluder_light_mask = 1
 format = 1
 tile_data = PoolIntArray( 4, 0, 0, 5, 1, 0, 6, 2, 0, 65540, 5, 0, 65541, 4, 0, 65542, 5, 0, 131076, 6, 0, 131077, 7, 0, 131078, 8, 0 )
 
-[node name="Turret" parent="." index="3" instance=ExtResource( 5 )]
+[node name="Wall_up" parent="." index="3" instance=ExtResource( 5 )]
 
-position = Vector2( 352, 96 )
+position = Vector2( -32.705, -2304 )
+rotation = 1.5708
+scale = Vector2( 1, 1.01815 )
+points = PoolVector2Array( -7.83308e-05, -1792, -1.39876e-06, -32 )
 
-[node name="Turret2" parent="." index="4" instance=ExtResource( 5 )]
+[node name="Wall_right" parent="." index="4" instance=ExtResource( 5 )]
 
-position = Vector2( 64, 704 )
+position = Vector2( 1792, 0 )
+points = PoolVector2Array( 0, -2304, 0, 768 )
 
-[node name="SpawnPoint" parent="." index="5" instance=ExtResource( 6 )]
+[node name="Wall_down" parent="." index="5" instance=ExtResource( 5 )]
 
-position = Vector2( 415.999, 682.426 )
-_sections_unfolded = [ "Collision", "Transform" ]
+position = Vector2( -32.3947, 768 )
+rotation = 1.5708
+scale = Vector2( 1, 1.01815 )
+points = PoolVector2Array( -7.83308e-05, -1792, -1.39876e-06, -32 )
 
-[node name="Life" parent="." index="6" instance=ExtResource( 7 )]
+[node name="Wall_left" parent="." index="6" instance=ExtResource( 5 )]
 
-position = Vector2( 704, -64 )
+points = PoolVector2Array( 0, -2304, 0, 768 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="7"]
 
 editor/display_folded = true
-visible = false
 position = Vector2( 576, 448 )
 input_pickable = false
-collision_layer = 1
-collision_mask = 1
+collision_layer = 64
+collision_mask = 48
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
+script = ExtResource( 6 )
+_sections_unfolded = [ "Collision" ]
 
 [node name="Polygon2D" type="Polygon2D" parent="StaticBody2D" index="0"]
 
 polygon = PoolVector2Array( 0, 0, 384, 0, 448, -64, 512, -192, 512, -320, 448, -384, 320, -448, 192, -384, 0, -320, -64, -192, -64, -64 )
 uv = PoolVector2Array(  )
-color = Color( 1, 1, 1, 1 )
+color = Color( 0, 0, 0, 1 )
 vertex_colors = PoolColorArray(  )
 offset = Vector2( 0, 0 )
 antialiased = false
@@ -210,11 +217,30 @@ texture_scale = Vector2( 1, 1 )
 texture_rotation_degrees = 0.0
 invert_enable = false
 invert_border = 100.0
-_sections_unfolded = [ "Texture" ]
+_sections_unfolded = [ "Material", "Texture" ]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" index="1"]
 
 build_mode = 0
 polygon = PoolVector2Array(  )
+_sections_unfolded = [ "Material" ]
+
+[node name="Area2D" type="Area2D" parent="StaticBody2D" index="2"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+monitorable = false
+collision_layer = 64
+collision_mask = 48
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Collision" ]
+
+[node name="SpawnPoint" parent="." index="8" instance=ExtResource( 7 )]
+
+position = Vector2( 352, -208 )
 
 

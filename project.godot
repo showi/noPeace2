@@ -22,6 +22,8 @@ libCommon="*res://lib/libCommon.tscn"
 
 window/size/height=768
 window/size/resizable=false
+window/size/test_width=640
+window/size/test_height=480
 window/handheld/orientation="portrait"
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
@@ -68,6 +70,8 @@ ui_aero_left=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_na
 2d_physics/layer_5="BulletPlayer"
 2d_render/layer_6="BulletEnemy"
 2d_physics/layer_6="BulletEnemy"
+2d_render/layer_7="Wall"
+2d_physics/layer_7="Wall"
 2d_render/size/width=800
 
 [physics]
