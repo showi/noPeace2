@@ -41,8 +41,7 @@ func clearPointsToDraw():
     getLevel().clearPointsToDraw()
 
 func onNewState(name):
-#    print('[%s:newState]' % get_instance_id(), name)
-    pass
+    print('[%s:newState]' % get_instance_id(), name)
 
 func setLife(value):
     common.setLife(self, value)
@@ -66,31 +65,40 @@ func _physics_process(delta):
     sm.request(elapsed)
 
 func getLevel():
-    var nodePath = '/root/Game/LevelManager/Level'
+    var nodePath = '/root/Game/LevelManager/LevelContainer/Level'
     if not has_node(nodePath):
         return null
     return get_node(nodePath)
 
-func getAirPaths():
-    var nodePath = '/root/Game/LevelManager/Level/AirPath'
+func getPaths():
+    var nodePath = '/root/Game/LevelManager/LevelContainer/Level/Paths'
     if not has_node(nodePath):
+        print('noPath')
         return null
     return get_node(nodePath).get_children()
 
 func getNavigation():
-    var nodePath = '/root/Game/LevelManager/Level/Navigation2D'
+    var nodePath = '/root/Game/LevelManager/LevelContainer/Level/Navigation'
     if not has_node(nodePath):
+        print('noNavigation')
         return null
     return get_node(nodePath)
 
 func onPlayerDetected(entity):
     sm.setState('chase', {'target': entity})
+
+func onPlayerLoose(entity):
+    stopWeaponFiring()
+    sm.setState('idle')
+
+func startWeaponFiring():
+    if $WeaponSystem.autoFire:
+        return
     $WeaponSystem.setAutoFire(true)
     $WeaponSystem.immediateFire()
 
-func onPlayerLoose(entity):
+func stopWeaponFiring():
     $WeaponSystem.setAutoFire(false)
-    sm.setState('idle')
 
 func onHit(entity):
     print('onHit')

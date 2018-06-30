@@ -37,6 +37,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Ground" type="TileMap" parent="." index="0"]
 
+editor/display_folded = true
 mode = 0
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 128, 128 )
@@ -159,7 +160,6 @@ enabled = true
 
 [node name="AirPath" type="Node2D" parent="." index="12"]
 
-editor/display_folded = true
 position = Vector2( 800, -240 )
 script = ExtResource( 7 )
 

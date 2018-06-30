@@ -10,10 +10,10 @@ func _init():
     print('CollisionLayer: ', CollisionLayer)
 
 func getLevelPath(levelName):
-    return 'res://level/' + levelName + '/Level.tscn'
+    return 'res://level/' + levelName + '/LevelContainer.tscn'
 
 func getLevel():
-    return get_node('/root/Game/LevelManager/Level')
+    return get_node('/root/Game/LevelManager/LevelContainer')
 
 func getLevelManager():
     return get_node('/root/Game/LevelManager')
@@ -28,13 +28,13 @@ func getPlayerPath():
     return 'res://player/Player.tscn'
 
 func getPlayer():
-    return get_node('/root/Game/LevelManager/Level/Player')
+    return get_node('/root/Game/LevelManager/LevelContainer/Player')
 
 func getScreenSize():
     return get_node('/root').size
 
 func getLevelEntity(partialPath):
-    return get_node('/root/Game/LevelManager/Level/' + partialPath)
+    return get_node('/root/Game/LevelManager/LevelContainer/' + partialPath)
 
 func getResource(kind, resourceName):
     return load('res://' + kind + '/' + resourceName + '/' + kind.capitalize() + '.tscn')
@@ -83,7 +83,7 @@ func kill(entity, killAnimation):
     var animation = killAnimation.instance()
     animation.set_scale(Vector2(4, 4))
     animation.set_position(entity.get_global_position())
-    get_node('/root/Game/LevelManager/Level').add_child(animation)
+    get_node('/root/Game/LevelManager/LevelContainer').add_child(animation)
 
 static func setLife(entity, value):
     if entity.life == value:
@@ -130,7 +130,7 @@ static func attachEntityToPath(entity, path, offset):
     return follow
 
 static func detachEntityFromTrack(entity, track):
-    var level = track.get_node('/root/Game/LevelManager/Level')
+    var level = track.get_node('/root/Game/LevelManager/LevelContainer')
     var transform = entity.get_global_transform()
     track.remove_child(entity)
     level.add_child(entity)
@@ -152,15 +152,20 @@ static func goTo(entity, path, minDistance=200, delta=1):
     var targetPoint = path[1]
     var distance = (path[-1] - entity.get_global_position()).length()
     targetPoint = entity.to_local(targetPoint)
-
     var angle = Vector2(0, -1).angle_to(targetPoint)
     entity.set_global_rotation(
         entity.get_global_rotation() + angle)
+    var targetInfo = {
+        'targetPoint': targetPoint,
+        'distance': distance,
+        'angle': angle
+    }
     if distance < minDistance:
         entity.linear_velocity = Vector2(0, 0)
-        return
+        return targetInfo
     var orientation = Vector2(0, -1).rotated(entity.rotation).normalized()
     var velocity = orientation * entity.speed
     if velocity.length() > distance:
         velocity = orientation * distance
     entity.linear_velocity = velocity
+    return targetInfo

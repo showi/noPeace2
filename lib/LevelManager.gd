@@ -7,12 +7,16 @@ onready var common = get_node('/root/libCommon')
 var freq = 1 / 30
 var elapsed = 0
 var frameIdx = 0
+var images = []
 
 func _ready():
     start()
 
 func start():
     print('[+] ', common.title, ' (', common.version, ')')
+    if recording:
+        connect('tree_exiting', self, 'save_images')
+
     var screensize = common.getScreenSize()
     var level = loadLevel(levelName)
     level.add_child(loadLevelDefault())
@@ -49,9 +53,13 @@ func screenRecorder(idx = 0):
     var extension = '.png'
     var img = get_viewport().get_texture().get_data()
     img.flip_y()
-    img.save_png('%s%s%04d%s' % [path, prefix, idx, extension])
+    images.append(['%s%s%04d%s' % [path, prefix, idx, extension], img])
 
-func _process(delta):
+func save_images():
+    for d in images:
+        d[1].save_png(d[0])
+
+func _physics_process(delta):
     if recording:
         elapsed += delta
         if elapsed > freq:

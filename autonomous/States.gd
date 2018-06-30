@@ -8,7 +8,7 @@ class PatrolReachTrackState:
     func handle(sm):
         var entity = sm.entity
         if not pathAndPoint:
-            pathAndPoint = sm.common.getClosestPointInPaths(entity, entity.getAirPaths())
+            pathAndPoint = sm.common.getClosestPointInPaths(entity, entity.getPaths())
             var path = pathAndPoint[0]
         else:
             var navPath = pathAndPoint[0]
@@ -32,7 +32,6 @@ class PatrolState:
         if not onTrack:
             return sm.setState('patrol:reachTrack')
 
-
     func on_exit(sm):
         if onTrack:
             sm.common.detachEntityFromTrack(sm.entity, onTrack)
@@ -45,11 +44,14 @@ class FindObjectiveState:
     func handle(sm):
         for objective in objectives:
             if objective == 'patrol':
-                if sm.entity.getAirPaths():
+                if sm.entity.getPaths():
                     return sm.setState('patrol')
+                else:
+                    print('noPatrolPath')
         sm.setState('idle')
 
 class ChaseState:
+    const DETECTION_ANGLE_THRESHOLD = PI / 8
     var target
 
     func handle(sm):
@@ -63,7 +65,12 @@ class ChaseState:
         if not path:
             return sm.setState('idle')
         entity.addPointToDraw(path[1], 10, '#00a')
-        sm.common.goTo(entity, path, 200, sm.delta)
+        var targetInfo = sm.common.goTo(entity, path, 200, sm.delta)
+        var angle = Vector2(0, -1).angle_to(entity.to_local(target.get_global_position()))
+        if abs(angle) < DETECTION_ANGLE_THRESHOLD:
+            entity.startWeaponFiring()
+        else:
+            entity.stopWeaponFiring()
 
 class IdleState:
 

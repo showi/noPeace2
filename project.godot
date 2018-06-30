@@ -22,8 +22,8 @@ libCommon="*res://lib/libCommon.tscn"
 
 window/size/height=768
 window/size/resizable=false
-window/size/test_width=640
-window/size/test_height=480
+window/size/test_width=320
+window/size/test_height=240
 window/handheld/orientation="portrait"
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"

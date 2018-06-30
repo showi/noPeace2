@@ -9,7 +9,7 @@
 [sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 50.0
+radius = 25.0
 height = 20.0
 
 [node name="Autonomous" type="RigidBody2D"]
@@ -51,7 +51,8 @@ shape = SubResource( 1 )
 [node name="Sensor" parent="." index="2" instance=ExtResource( 3 )]
 
 detectionType = "Circle"
-detectionLength = 600.0
+detectionLength = 300.0
+detectionWidth = 200.0
 
 [node name="WeaponSystem" parent="." index="3" instance=ExtResource( 4 )]
 

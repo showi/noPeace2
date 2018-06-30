@@ -26,5 +26,4 @@ func _ready():
     add_child(body)
 
 func hit(entity):
-    pass
-#    entity.get_parent().kill()
+    entity.kill()

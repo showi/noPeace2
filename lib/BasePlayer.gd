@@ -6,6 +6,7 @@ signal releaseFire()
 
 export (float) var life = 100.0
 export (float) var damage = 10.0
+export (bool) var godLike = false
 
 onready var common = get_node('/root/libCommon')
 
@@ -40,7 +41,8 @@ func makeCollisionArea():
     add_child(area)
 
 func hit(entity):
-    print('hit')
+    if godLike:
+        return
     common.hit(self, entity)
 
 func setLife(value):

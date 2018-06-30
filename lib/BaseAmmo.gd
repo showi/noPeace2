@@ -32,7 +32,7 @@ func setWeaponSystem(obj):
     set_collision_layer_bit(obj.ammoCollisionLayer, true)
 
 func getWorld():
-    return get_node('/root/Game/LevelManager/Level')
+    return get_node('/root/Game/LevelManager/LevelContainer')
 
 func getShooter():
     var ref = weaponSystemRef.get_ref()
