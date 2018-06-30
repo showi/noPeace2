@@ -21,7 +21,6 @@ func _init():
 func _ready():
     makeCollisionArea()
     killAnimation = common.getResource('explosion', 'explosion_02')
-    connect('body_entered', self, 'hit')
     connect('pressFire', $WeaponSystem, 'pressFire')
     connect('releaseFire', $WeaponSystem, 'releaseFire')
     screensize = common.getScreenSize()
@@ -34,12 +33,14 @@ func makeCollisionArea():
     var area = Area2D.new()
     area.add_child($CollisionShape2D.duplicate())
     area.monitorable = true
-    area.monitoring = false
+    area.monitoring = true
     area.set_collision_layer_bit(common.CollisionLayer.Player, true)
+    area.set_collision_mask_bit(common.CollisionLayer.BulletEnemy, true)
     area.connect('area_entered', self, 'hit')
     add_child(area)
 
 func hit(entity):
+    print('hit')
     common.hit(self, entity)
 
 func setLife(value):

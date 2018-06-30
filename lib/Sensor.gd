@@ -1,8 +1,8 @@
 extends Area2D
 
 export (String, 'Cone', 'Circle') var detectionType = 'Cone'
-export (float) var detectionLength = 100.0
-export (float) var detectionWidth = 20.0
+export (float) var detectionLength = 400.0
+export (float) var detectionWidth = 400.0
 
 onready var common = get_node('/root/libCommon')
 

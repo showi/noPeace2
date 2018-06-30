@@ -5,7 +5,7 @@
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
-points = PoolVector2Array( 0, -0.5, 0.5, 0.5, -0.5, 0.5 )
+points = PoolVector2Array( 0, 0, 1, 1, -1, 1 )
 
 [sub_resource type="CircleShape2D" id=2]
 
@@ -28,9 +28,9 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Transform", "Visibility" ]
-detectionType = "Circle"
-detectionLength = 100.0
-detectionWidth = 20.0
+detectionType = "Cone"
+detectionLength = 400.0
+detectionWidth = 400.0
 
 [node name="Cone" type="CollisionShape2D" parent="." index="0"]
 

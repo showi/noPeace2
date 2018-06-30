@@ -70,6 +70,7 @@ func getPlayerStat(kind):
 
 static func hit(src, entity):
     var kind = getEntityKind(entity)
+    print('kind :', kind)
     if kind == 'Ammo':
         var shooter = entity.getShooter()
         var shooterKind = getEntityKind(shooter)
@@ -77,7 +78,7 @@ static func hit(src, entity):
             src.setLife(src.life - entity.hitDamage)
             entity.kill()
 
-static func kill(entity, killAnimation):
+func kill(entity, killAnimation):
     entity.hide()
     var animation = killAnimation.instance()
     animation.set_scale(Vector2(4, 4))
@@ -141,15 +142,21 @@ static func setObjectAttributes(obj, attributes):
     for key in attributes.keys():
         obj.set(key, attributes[key])
 
-static func getNavigationPath(entity, target, navigation):
-    return navigation.get_simple_path(entity.get_global_position(), target.get_global_position())
+static func getNavigationPath(entity, _targetPoint, navigation):
+    var targetPoint = _targetPoint
+    if typeof(_targetPoint) != TYPE_VECTOR2:
+        targetPoint = _targetPoint.get_global_position()
+    return navigation.get_simple_path(entity.get_global_position(), targetPoint)
 
-static func goTo(entity, targetPoint):
+static func goTo(entity, path, minDistance=200, delta=1):
+    var targetPoint = path[1]
+    var distance = (path[-1] - entity.get_global_position()).length()
     targetPoint = entity.to_local(targetPoint)
-    var distance = targetPoint.length()
+
     var angle = Vector2(0, -1).angle_to(targetPoint)
-    entity.set_global_rotation(entity.get_global_rotation() + angle)
-    if distance < 200:
+    entity.set_global_rotation(
+        entity.get_global_rotation() + angle)
+    if distance < minDistance:
         entity.linear_velocity = Vector2(0, 0)
         return
     var orientation = Vector2(0, -1).rotated(entity.rotation).normalized()

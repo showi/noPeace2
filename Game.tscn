@@ -2,13 +2,13 @@
 
 [ext_resource path="res://lib/LevelManager.gd" type="Script" id=1]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" index="0"]
 
 [node name="LevelManager" type="Node2D" parent="." index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Material", "Pause", "Visibility" ]
 levelName = "level_02"
-recording = false
+recording = true
 
 

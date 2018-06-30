@@ -11,20 +11,19 @@ class PatrolReachTrackState:
             pathAndPoint = sm.common.getClosestPointInPaths(entity, entity.getAirPaths())
             var path = pathAndPoint[0]
         else:
-            var path = pathAndPoint[0]
-            var targetPoint = entity.to_local(path.to_global(pathAndPoint[1]))
+            var navPath = pathAndPoint[0]
+            var targetPoint = entity.to_local(navPath.to_global(pathAndPoint[1]))
             var distance = targetPoint.length()
-            if distance < 5:
-                var follow = sm.common.attachEntityToPath(sm.entity, path, pathAndPoint[3])
+            if distance < 40:
+                var follow = sm.common.attachEntityToPath(sm.entity, navPath, pathAndPoint[3])
                 sm.setState('patrol', { 'onTrack': follow })
                 return
-            var angle = Vector2(0, -1).angle_to(targetPoint)
-            entity.set_global_rotation(entity.get_global_rotation() + angle)
-            var orientation = Vector2(0, -1).rotated(entity.rotation).normalized()
-            var velocity = orientation * entity.speed
-            if velocity.length() > distance:
-                velocity = orientation * distance
-            entity.linear_velocity = velocity
+            var navigation = entity.getNavigation()
+            var path = sm.common.getNavigationPath(entity, navPath.to_global(pathAndPoint[1]), navigation)
+            if not path:
+                return sm.setState('idle')
+            entity.addPointToDraw(path[1], 10, '#00a')
+            sm.common.goTo(entity, path, 1, sm.delta)
 
 class PatrolState:
     var onTrack = null
@@ -63,13 +62,14 @@ class ChaseState:
         var path = sm.common.getNavigationPath(entity, target, navigation)
         if not path:
             return sm.setState('idle')
-        sm.common.goTo(entity, path[1])
+        entity.addPointToDraw(path[1], 10, '#00a')
+        sm.common.goTo(entity, path, 200, sm.delta)
 
 class IdleState:
 
     func handle(sm):
-        if sm.getElapsed() < 250:
-            return
+#        if sm.getElapsed() < 100:
+#            return
         sm.setState('findObjective')
 
 static func getStatesDictionary():

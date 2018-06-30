@@ -38,6 +38,7 @@ func loadAmmos():
     assert $Cannons.get_child_count() != 0
     assert $Ammos.get_child_count() != 0
     selectedAmmo = $Ammos.get_child(0)
+    selectedAmmo.set_meta('entityKind', 'Ammo')
 
 func getWorld():
     var world = common.getLevelEntity('LevelDefault/bullets')

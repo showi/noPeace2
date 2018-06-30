@@ -37,9 +37,10 @@ func _ready():
 
 func makeCollisionArea():
     var area = Area2D.new()
-    area.add_child($CollisionShape2D.duplicate())
+    area.add_child($CollisionShape2D.duplicate(DUPLICATE_USE_INSTANCING))
     area.monitorable = false
     area.monitoring = true
+    area.collison_mask = 0
     area.set_collision_mask_bit(common.CollisionLayer.BulletPlayer, true)
     area.connect('area_entered', self, 'hit')
     add_child(area)

@@ -95,10 +95,6 @@ position = Vector2( -10, 0 )
 visible = false
 position = Vector2( 10, 0 )
 
-[node name="Ammos" parent="WeaponSystem" index="1"]
-
-editor/display_folded = true
-
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="2"]
 
 scale = Vector2( 0.25, 0.25 )
@@ -141,7 +137,7 @@ _sections_unfolded = [ "Anchor", "Margin", "Material", "Rect", "Visibility" ]
 anchor_mode = 1
 rotating = true
 current = true
-zoom = Vector2( 2, 2 )
+zoom = Vector2( 3, 3 )
 limit_left = -10000000
 limit_top = -10000000
 limit_right = 10000000

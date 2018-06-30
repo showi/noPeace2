@@ -10,7 +10,7 @@ class StateMachine:
     var lastMsTick = 0
     var entity
     var common
-    var lastDelta = 0
+    var delta
 
     func _init(_common, _entity, _statesDictionary, stateName):
         common = _common
@@ -30,6 +30,6 @@ class StateMachine:
     func getElapsed():
         return OS.get_ticks_msec() - lastMsTick;
 
-    func request(delta):
-        lastDelta = delta
+    func request(_delta):
+        delta = _delta
         return currentState.handle(self)

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://wall/Wall.gd" type="Script" id=1]
 
-[node name="Wall" type="Line2D" index="0"]
+[node name="Wall" type="Line2D"]
 
 points = PoolVector2Array( 0, 0, 0, 256 )
 width = 10.0

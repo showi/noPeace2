@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://autonomous/Autonomous.gd" type="Script" id=1]
 [ext_resource path="res://asset/Example_ships/5B.png" type="Texture" id=2]
 [ext_resource path="res://lib/Sensor.tscn" type="PackedScene" id=3]
+[ext_resource path="res://lib/WeaponSystem.tscn" type="PackedScene" id=4]
+[ext_resource path="res://weapon/cannon/Cannon.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -33,6 +35,7 @@ angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
 speed = 200.0
+maxRotationSpeed = 0.5
 detectionRadius = 100.0
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
@@ -47,6 +50,20 @@ shape = SubResource( 1 )
 
 [node name="Sensor" parent="." index="2" instance=ExtResource( 3 )]
 
-detectionType = "Cone"
+detectionType = "Circle"
+detectionLength = 600.0
+
+[node name="WeaponSystem" parent="." index="3" instance=ExtResource( 4 )]
+
+editor/display_folded = true
+
+[node name="Cannon" parent="WeaponSystem/Cannons" index="0" instance=ExtResource( 5 )]
+
+position = Vector2( -32, -16 )
+
+[node name="Cannon2" parent="WeaponSystem/Cannons" index="1" instance=ExtResource( 5 )]
+
+position = Vector2( 32, -16 )
 
 
+[editable path="WeaponSystem"]
